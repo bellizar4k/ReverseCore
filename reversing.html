@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REVERSE//CORE - Реверс-Инжиниринг Простыми Словами</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Просто ReverseCore - По простому</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Montserrat Font - STRICTLY 700 WEIGHT ONLY -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* MANDATORY RULE: EVERY SINGLE TEXT ELEMENT USES MONTSERRAT 700 */
         * {
             font-family: 'Montserrat', sans-serif !important;
             font-weight: 700 !important;
+            -webkit-tap-highlight-color: transparent !important;
         }
 
         body {
@@ -25,20 +23,26 @@
             position: relative;
         }
 
-        /* Smooth Gradient Text */
+        input, textarea, button, select, a {
+            outline: none !important;
+            -webkit-appearance: none;
+        }
+
+        input:focus, input:active, input:focus-visible,
+        textarea:focus, textarea:active, textarea:focus-visible,
+        button:focus, button:active, button:focus-visible {
+            outline: none !important;
+            outline-offset: 0 !important;
+            border-color: #00d0ff !important;
+            box-shadow: 0 0 0 3px rgba(0, 208, 255, 0.25) !important;
+        }
+
         .text-gradient {
             background: linear-gradient(135deg, #0f172a 0%, #00d0ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .text-gradient-cyan {
-            background: linear-gradient(135deg, #00d0ff 0%, #0284c7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* MANDATORY REQUIREMENT: SMOOTH SCALE ON HOVER FOR ALL INTERACTIVE ELEMENTS */
         .hover-scale {
             transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
             will-change: transform;
@@ -47,19 +51,16 @@
             transform: scale(1.04);
         }
 
-        /* Active Navigation Tab */
         .nav-tab.active {
             color: #0f172a;
             border-bottom: 3px solid #00d0ff;
-            background-color: rgba(0, 208, 255, 0.1);
+            background-color: rgba(0, 208, 255, 0.12);
         }
 
-        /* Toast notification popup */
         #toast {
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Custom Light Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -75,7 +76,6 @@
             background: #00d0ff;
         }
 
-        /* Animated Shifting Gradient Back To Top Button */
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -120,10 +120,6 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#00d0ff] selection:text-[#0f172a]">
 
-    <!-- MANDATORY REQUIREMENT: NEON LIGHT FOLLOWING THE CURSOR -->
-    <div id="cursor-glow" class="fixed w-80 h-80 rounded-full pointer-events-none z-50 transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 opacity-30 blur-3xl" style="background: radial-gradient(circle, rgba(0, 208, 255, 0.8) 0%, rgba(0, 208, 255, 0) 70%);"></div>
-
-    <!-- Toast Notification for Actions -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-xl border-2 border-[#00d0ff] shadow-2xl flex items-center space-x-3 translate-y-20 opacity-0 pointer-events-none">
         <svg class="w-5 h-5 text-[#00d0ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
         <span id="toast-text" class="text-xs">Скопировано в буфер обмена!</span>
@@ -131,51 +127,47 @@
 
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+            <div class="flex items-center justify-between h-20 gap-4 sm:gap-6 xl:gap-8">
                 
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 cursor-pointer hover-scale" onclick="switchTab('articles')">
-                    <div class="p-2.5 bg-slate-50 border-2 border-[#00d0ff] rounded-xl shadow-sm flex items-center justify-center">
-                        <svg class="w-7 h-7 text-[#00d0ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center space-x-3 cursor-pointer hover-scale shrink-0" onclick="switchTab('articles')">
+                    <div class="p-2.5 bg-slate-50 border-2 border-[#00d0ff] rounded-xl shadow-sm flex items-center justify-center shrink-0">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#00d0ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                         </svg>
                     </div>
-                    <div>
-                        <span class="text-2xl tracking-wider text-slate-900">REVERSE<span class="text-[#00d0ff]">//CORE</span></span>
-                        <div class="text-[10px] tracking-widest text-slate-500 uppercase">Понятно и без сложных слов</div>
+                    <div class="shrink-0">
+                        <span class="text-xl sm:text-2xl tracking-wider text-slate-900">REVERSE<span class="text-[#00d0ff]">//CORE</span></span>
+                        <div class="text-[9px] sm:text-[10px] tracking-widest text-slate-500 uppercase">Понятно и без сложных слов</div>
                     </div>
                 </div>
 
-                <!-- Desktop Navigation Tabs -->
-                <nav class="hidden lg:flex space-x-2">
-                    <button onclick="switchTab('articles')" id="btn-articles" class="nav-tab active hover-scale px-5 py-3 text-xs uppercase tracking-wider transition-all rounded-xl flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-[#00d0ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C20.832 18.477 19.247 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                <nav class="hidden lg:flex items-center gap-1.5 xl:gap-3 shrink-0">
+                    <button onclick="switchTab('articles')" id="btn-articles" class="nav-tab active hover-scale px-3 py-2.5 xl:px-4 xl:py-3 text-[11px] xl:text-xs uppercase tracking-wider transition-all rounded-xl flex items-center space-x-2 whitespace-nowrap">
+                        <svg class="w-4 h-4 text-[#00d0ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C20.832 18.477 19.247 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                         <span>База знаний / Статьи</span>
                     </button>
-                    <button onclick="switchTab('tools')" id="btn-tools" class="nav-tab hover-scale px-5 py-3 text-xs uppercase tracking-wider text-slate-600 hover:text-[#00d0ff] transition-all rounded-xl flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-[#00d0ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                    <button onclick="switchTab('tools')" id="btn-tools" class="nav-tab hover-scale px-3 py-2.5 xl:px-4 xl:py-3 text-[11px] xl:text-xs uppercase tracking-wider text-slate-600 hover:text-[#00d0ff] transition-all rounded-xl flex items-center space-x-2 whitespace-nowrap">
+                        <svg class="w-4 h-4 text-[#00d0ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
                         <span>Инструменты и Скрипты</span>
                     </button>
-                    <button onclick="switchTab('practice')" id="btn-practice" class="nav-tab hover-scale px-5 py-3 text-xs uppercase tracking-wider text-slate-600 hover:text-[#00d0ff] transition-all rounded-xl flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-[#00d0ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <button onclick="switchTab('practice')" id="btn-practice" class="nav-tab hover-scale px-3 py-2.5 xl:px-4 xl:py-3 text-[11px] xl:text-xs uppercase tracking-wider text-slate-600 hover:text-[#00d0ff] transition-all rounded-xl flex items-center space-x-2 whitespace-nowrap">
+                        <svg class="w-4 h-4 text-[#00d0ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>Практика и Разборы</span>
                     </button>
-                    <button onclick="switchTab('deobfuscation')" id="btn-deobfuscation" class="nav-tab hover-scale px-5 py-3 text-xs uppercase tracking-wider text-slate-600 hover:text-[#00d0ff] transition-all rounded-xl flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-[#00d0ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <button onclick="switchTab('deobfuscation')" id="btn-deobfuscation" class="nav-tab hover-scale px-3 py-2.5 xl:px-4 xl:py-3 text-[11px] xl:text-xs uppercase tracking-wider text-slate-600 hover:text-[#00d0ff] transition-all rounded-xl flex items-center space-x-2 whitespace-nowrap">
+                        <svg class="w-4 h-4 text-[#00d0ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         <span>Анализ и Деобфускация</span>
                     </button>
                 </nav>
 
-                <!-- Beginner Friendly Badge -->
-                <div class="hidden sm:flex items-center space-x-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-full shadow-sm">
+                <div class="hidden xl:flex items-center space-x-2 px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-full shadow-sm shrink-0">
                     <span class="w-2.5 h-2.5 rounded-full bg-[#00d0ff] animate-pulse"></span>
-                    <span class="text-xs text-slate-700 uppercase">ДЛЯ НОВИЧКОВ</span>
+                    <span class="text-[11px] text-slate-700 uppercase">ДЛЯ НОВИЧКОВ</span>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Navigation -->
-        <div class="lg:hidden flex overflow-x-auto border-t border-slate-200 bg-slate-50 px-2 py-2 gap-1">
+        <div class="lg:hidden flex overflow-x-auto border-t border-slate-200 bg-slate-50 px-2 py-2 gap-1.5">
             <button onclick="switchTab('articles')" id="btn-articles-mob" class="hover-scale px-3 py-2 text-xs uppercase whitespace-nowrap text-[#00d0ff] bg-white rounded-lg border border-slate-200">Статьи</button>
             <button onclick="switchTab('tools')" id="btn-tools-mob" class="hover-scale px-3 py-2 text-xs uppercase whitespace-nowrap text-slate-600 bg-white rounded-lg border border-slate-200">Софт & Скрипты</button>
             <button onclick="switchTab('practice')" id="btn-practice-mob" class="hover-scale px-3 py-2 text-xs uppercase whitespace-nowrap text-slate-600 bg-white rounded-lg border border-slate-200">Практика</button>
@@ -183,7 +175,6 @@
         </div>
     </header>
 
-    <!-- Welcome Hero Section -->
     <section class="bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200 py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -197,7 +188,6 @@
                     </p>
                 </div>
 
-                <!-- Languages list -->
                 <div class="flex flex-wrap gap-2">
                     <span class="hover-scale px-3 py-1.5 bg-slate-100 border border-slate-300 rounded-xl text-xs text-slate-800">Java</span>
                     <span class="hover-scale px-3 py-1.5 bg-slate-100 border border-slate-300 rounded-xl text-xs text-slate-800">C / C++</span>
@@ -211,18 +201,14 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
 
-        <!-- ================= TAB 1: ARTICLES ================= -->
         <div id="tab-articles-content" class="tab-content block space-y-8">
-            <!-- Search & Simple Filters -->
             <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl space-y-4 shadow-sm">
                 <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
-                    <!-- Search Input -->
                     <div class="relative w-full md:w-96">
-                        <input type="text" id="article-search" oninput="filterArticles()" placeholder="Поиск по статьям и языкам..." class="hover-scale w-full bg-white border border-slate-300 text-slate-900 px-4 py-3 pl-11 rounded-xl focus:border-[#00d0ff] focus:outline-none transition-all text-xs">
-                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <input type="text" id="article-search" oninput="filterArticles()" placeholder="Поиск по статьям и языкам..." class="w-full bg-white border border-slate-300 text-slate-900 px-4 py-3 pl-11 rounded-xl text-xs transition-colors">
+                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
 
-                    <!-- Language Filter Buttons -->
                     <div class="flex flex-wrap gap-2 w-full md:w-auto" id="tag-filters">
                         <button onclick="setArticleTag('ALL')" class="hover-scale tag-btn active-tag text-xs px-3.5 py-2 rounded-xl border border-[#00d0ff] bg-[#00d0ff] text-slate-900 uppercase">Все языки</button>
                         <button onclick="setArticleTag('Java')" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">Java</button>
@@ -234,30 +220,24 @@
                 </div>
             </div>
 
-            <!-- Articles Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-grid">
-                <!-- Dynamically populated via JS -->
             </div>
         </div>
 
-        <!-- ================= TAB 2: TOOLS & SCRIPTS ================= -->
         <div id="tab-tools-content" class="tab-content hidden space-y-10">
             <div>
                 <h2 class="text-2xl text-slate-900 uppercase mb-2">Программы для Новичка (Декомпиляторы)</h2>
                 <p class="text-xs text-slate-500 mb-6">Эти бесплатные утилиты открывают файл программы и показывают ее код человеческим языком</p>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-grid">
-                    <!-- Dynamic Tool Cards -->
                 </div>
             </div>
 
-            <!-- Simple Copyable Scripts -->
             <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6">
                 <h2 class="text-2xl text-slate-900 uppercase mb-2">Готовые Заготовки и Скрипты</h2>
                 <p class="text-xs text-slate-500 mb-6">Готовые кусочки кода, которые помогают быстро перехватывать функции или искать спрятанный текст</p>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Script 1 -->
                     <div class="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between space-y-4 border-l-4 border-l-[#00d0ff] shadow-sm hover-scale">
                         <div>
                             <div class="flex justify-between items-center mb-2">
@@ -267,10 +247,9 @@
                             <p class="text-xs text-slate-600 mb-3">Заставляет программу всегда считать, что пользователь ввел правильный пароль:</p>
                             <pre class="bg-slate-900 p-3 rounded-lg text-xs text-[#00d0ff] overflow-x-auto"><code>Java.perform(function() {
     var Auth = Java.use("com.app.CheckAuth");
-    // Перехватываем функцию проверки
     Auth.checkPassword.implementation = function(pass) {
         console.log("Введенный пароль: " + pass);
-        return true; // Всегда говорим, что пароль верно!
+        return true;
     };
 });</code></pre>
                         </div>
@@ -280,11 +259,10 @@
                         </button>
                     </div>
 
-                    <!-- Script 2 -->
                     <div class="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between space-y-4 border-l-4 border-l-[#00d0ff] shadow-sm hover-scale">
                         <div>
                             <div class="flex justify-between items-center mb-2">
-                                <span class="text-sm text-slate-900">Python: Быстро разшифровать текст (XOR)</span>
+                                <span class="text-sm text-slate-900">Python: Быстро расшифровать текст (XOR)</span>
                                 <span class="text-[10px] bg-[#00d0ff]/20 text-slate-900 px-2 py-0.5 rounded border border-[#00d0ff]">Python</span>
                             </div>
                             <p class="text-xs text-slate-600 mb-3">Скрипт на Python для расшифровки запрятанных символов по ключу:</p>
@@ -297,7 +275,7 @@
 print(decrypt("SecretString", 0x5A))</code></pre>
                         </div>
                         <button onclick="copyText(`def decrypt(text, key):\n    result = \"\"\n    for char in text:\n        result += chr(ord(char) ^ key)\n    return result\n\nprint(decrypt(\"SecretString\", 0x5A))`)" class="hover-scale w-full py-2.5 bg-[#00d0ff] hover:bg-slate-900 text-slate-900 hover:text-white text-xs uppercase tracking-wider rounded-lg transition-all flex items-center justify-center space-x-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 002-2m0 0h2a2 2 0 002 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 002 2m0 0h2a2 2 0 002 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
                             <span>Скопировать скрипт</span>
                         </button>
                     </div>
@@ -305,9 +283,7 @@ print(decrypt("SecretString", 0x5A))</code></pre>
             </div>
         </div>
 
-        <!-- ================= TAB 3: PRACTICE ================= -->
         <div id="tab-practice-content" class="tab-content hidden space-y-10">
-            <!-- Interactive CrackMe Simulator for Beginners -->
             <div class="bg-slate-50 border-2 border-[#00d0ff] rounded-2xl p-6 shadow-sm hover-scale">
                 <div class="max-w-3xl mx-auto space-y-6">
                     <div class="text-center">
@@ -316,26 +292,19 @@ print(decrypt("SecretString", 0x5A))</code></pre>
                         <p class="text-xs text-slate-600 mt-1">Ниже приведен фрагмент кода, который проверяет введенный пользователем ключ. Попробуй узнать пароль!</p>
                     </div>
 
-                    <!-- Code Box -->
-                    <pre class="bg-slate-900 p-4 rounded-xl text-xs text-[#00d0ff] overflow-x-auto leading-relaxed"><code>// Простой фрагмент кода проверки пароля:
-bool CheckPassword(string userKey) {
-    // 1. Длина пароля должна быть ровно 11 символов
+                    <pre class="bg-slate-900 p-4 rounded-xl text-xs text-[#00d0ff] overflow-x-auto leading-relaxed"><code>bool CheckPassword(string userKey) {
     if (userKey.Length != 11) return false;
-    
-    // 2. Первые 7 букв должны быть "REVERSE"
-    // 3. Последние 4 цифры должны быть "2026"
     if (userKey.StartsWith("REVERSE") && userKey.EndsWith("2026")) {
-        return true; // Пароль верный!
+        return true;
     }
     return false;
 }</code></pre>
 
-                    <!-- User Answer Form -->
                     <div class="bg-white p-5 rounded-xl border border-slate-300 space-y-4">
                         <label class="block text-xs uppercase text-slate-700">Введи расшифрованный пароль сюда:</label>
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <input type="text" id="crackme-input" placeholder="Например: REVERSE2026" class="hover-scale flex-grow bg-slate-50 border border-slate-300 text-slate-900 px-4 py-3 rounded-xl focus:border-[#00d0ff] focus:outline-none text-sm">
-                            <button onclick="checkCrackme()" class="hover-scale px-6 py-3 bg-[#00d0ff] hover:bg-slate-900 text-slate-900 hover:text-white text-xs uppercase tracking-wider rounded-xl transition-all">
+                            <input type="text" id="crackme-input" placeholder="Например: REVERSE2026" class="flex-grow bg-slate-50 border border-slate-300 text-slate-900 px-4 py-3 rounded-xl text-sm">
+                            <button onclick="checkCrackme()" class="hover-scale px-6 py-3 bg-[#00d0ff] hover:bg-slate-900 text-slate-900 hover:text-white text-xs uppercase tracking-wider rounded-xl transition-all shrink-0">
                                 Проверить
                             </button>
                         </div>
@@ -344,7 +313,6 @@ bool CheckPassword(string userKey) {
                 </div>
             </div>
 
-            <!-- Beginner Friendly Case Studies -->
             <div>
                 <h2 class="text-2xl text-slate-900 uppercase mb-4">Простые Разборы По Шагам</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -363,9 +331,7 @@ bool CheckPassword(string userKey) {
             </div>
         </div>
 
-        <!-- ================= TAB 4: DEOBFUSCATION ================= -->
         <div id="tab-deobfuscation-content" class="tab-content hidden space-y-10">
-            <!-- Simple Obfuscation Concept -->
             <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-3">
                 <span class="text-[10px] bg-[#00d0ff] text-slate-900 px-3 py-1 rounded-full uppercase">Что это такое?</span>
                 <h2 class="text-2xl text-slate-900 uppercase">Что такое обфускация простыми словами?</h2>
@@ -375,12 +341,10 @@ bool CheckPassword(string userKey) {
                 </p>
             </div>
 
-            <!-- LIVE MINI UTILITIES -->
             <div class="space-y-6">
                 <h2 class="text-2xl text-slate-900 uppercase">Онлайн Помощники Деобфускации</h2>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- TOOL 1: XOR Decoder -->
                     <div class="bg-white border border-slate-200 p-5 rounded-2xl space-y-4 shadow-sm hover-scale">
                         <div class="border-b border-slate-200 pb-2 flex items-center justify-between">
                             <span class="text-sm text-slate-900 uppercase">1. Расшифровщик XOR</span>
@@ -388,7 +352,7 @@ bool CheckPassword(string userKey) {
                         <div class="space-y-3">
                             <div>
                                 <label class="text-[10px] text-slate-500 uppercase">Зашифрованный текст:</label>
-                                <textarea id="xor-input" rows="2" placeholder="Введи зашифрованную строку..." class="hover-scale w-full bg-slate-50 border border-slate-300 text-slate-900 p-3 rounded-lg text-xs focus:border-[#00d0ff] focus:outline-none">ABC123</textarea>
+                                <textarea id="xor-input" rows="2" placeholder="Введи зашифрованную строку..." class="w-full bg-slate-50 border border-slate-300 text-slate-900 p-3 rounded-lg text-xs">ABC123</textarea>
                             </div>
                             <div class="flex gap-2">
                                 <input type="text" id="xor-key" value="0x5A" placeholder="Ключ" class="w-1/2 bg-slate-50 border border-slate-300 text-slate-900 p-2 rounded-lg text-xs">
@@ -403,7 +367,6 @@ bool CheckPassword(string userKey) {
                         </div>
                     </div>
 
-                    <!-- TOOL 2: Base64 / Hex Converter -->
                     <div class="bg-white border border-slate-200 p-5 rounded-2xl space-y-4 shadow-sm hover-scale">
                         <div class="border-b border-slate-200 pb-2">
                             <span class="text-sm text-slate-900 uppercase">2. Base64 и HEX Конвертер</span>
@@ -411,7 +374,7 @@ bool CheckPassword(string userKey) {
                         <div class="space-y-3">
                             <div>
                                 <label class="text-[10px] text-slate-500 uppercase">Текст или Base64 код:</label>
-                                <textarea id="conv-input" rows="2" placeholder="Например: UmV2ZXJzZQ==" class="hover-scale w-full bg-slate-50 border border-slate-300 text-slate-900 p-3 rounded-lg text-xs focus:border-[#00d0ff] focus:outline-none">UmV2ZXJzZQ==</textarea>
+                                <textarea id="conv-input" rows="2" placeholder="Например: UmV2ZXJzZQ==" class="w-full bg-slate-50 border border-slate-300 text-slate-900 p-3 rounded-lg text-xs">UmV2ZXJzZQ==</textarea>
                             </div>
                             <div class="flex gap-2">
                                 <button onclick="runConverter('base64')" class="hover-scale w-1/2 py-2 bg-[#00d0ff] hover:bg-slate-900 text-slate-900 hover:text-white text-xs uppercase tracking-wider rounded-lg transition-all">From Base64</button>
@@ -426,7 +389,6 @@ bool CheckPassword(string userKey) {
                         </div>
                     </div>
 
-                    <!-- TOOL 3: Junk Code Cleaner -->
                     <div class="bg-white border border-slate-200 p-5 rounded-2xl space-y-4 shadow-sm hover-scale">
                         <div class="border-b border-slate-200 pb-2">
                             <span class="text-sm text-slate-900 uppercase">3. Очиститель Мусора в Коде</span>
@@ -434,7 +396,7 @@ bool CheckPassword(string userKey) {
                         <div class="space-y-3">
                             <div>
                                 <label class="text-[10px] text-slate-500 uppercase">Код с лишними пустые командами (NOP):</label>
-                                <textarea id="junk-input" rows="2" class="hover-scale w-full bg-slate-50 border border-slate-300 text-slate-900 p-3 rounded-lg text-xs focus:outline-none">NOP
+                                <textarea id="junk-input" rows="2" class="w-full bg-slate-50 border border-slate-300 text-slate-900 p-3 rounded-lg text-xs">NOP
 MOV RAX, 10
 NOP
 ADD RAX, 5</textarea>
@@ -442,7 +404,7 @@ ADD RAX, 5</textarea>
                             <button onclick="cleanJunkCode()" class="hover-scale w-full py-2 bg-[#00d0ff] hover:bg-slate-900 text-slate-900 hover:text-white text-xs uppercase tracking-wider rounded-lg transition-all">Убрать мусор</button>
                             <div>
                                 <label class="text-[10px] text-slate-500 uppercase">Чистый код:</label>
-                                <textarea id="junk-output" rows="2" readonly class="w-full bg-slate-900 text-[#00d0ff] p-2 rounded-lg text-xs focus:outline-none">Нажмите Убрать мусор...</textarea>
+                                <textarea id="junk-output" rows="2" readonly class="w-full bg-slate-900 text-[#00d0ff] p-2 rounded-lg text-xs">Нажмите Убрать мусор...</textarea>
                             </div>
                         </div>
                     </div>
@@ -452,10 +414,8 @@ ADD RAX, 5</textarea>
 
     </main>
 
-    <!-- Modal Article Reader -->
     <div id="article-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 hidden">
         <div class="bg-white border-2 border-[#00d0ff] rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl">
-            <!-- Modal Header -->
             <div class="p-6 border-b border-slate-200 flex justify-between items-center">
                 <div>
                     <div id="modal-tags" class="flex gap-2 mb-2"></div>
@@ -466,12 +426,9 @@ ADD RAX, 5</textarea>
                 </button>
             </div>
 
-            <!-- Modal Body -->
             <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed" id="modal-body">
-                <!-- Dynamic text -->
             </div>
 
-            <!-- Modal Footer -->
             <div class="p-4 border-t border-slate-200 bg-slate-50 rounded-b-2xl flex justify-between items-center">
                 <span class="text-xs text-slate-500">REVERSE//CORE Понятный Гайд</span>
                 <button onclick="closeModal()" class="hover-scale px-5 py-2 bg-slate-900 text-white hover:bg-[#00d0ff] hover:text-slate-900 text-xs uppercase tracking-wider rounded-lg transition-all">Закрыть</button>
@@ -479,7 +436,6 @@ ADD RAX, 5</textarea>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="border-t border-slate-200 bg-slate-50 py-8 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
@@ -492,7 +448,6 @@ ADD RAX, 5</textarea>
         </div>
     </footer>
 
-    <!-- Floating Back To Top Button -->
     <button id="back-to-top" onclick="scrollToTop()" class="btn-back-to-top uppercase tracking-wider" title="Вернуть наверх">
         <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path>
@@ -501,14 +456,6 @@ ADD RAX, 5</textarea>
     </button>
 
     <script>
-        /* MANDATORY REQUIREMENT: NEON LIGHT CURSOR FOLLOWER LOGIC */
-        const cursorGlow = document.getElementById('cursor-glow');
-        window.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = `${e.clientX}px`;
-            cursorGlow.style.top = `${e.clientY}px`;
-        });
-
-        /* Articles Database Written in Simple Language */
         const articlesData = [
             {
                 id: "java-simple",
@@ -576,7 +523,6 @@ ADD RAX, 5</textarea>
             }
         ];
 
-        /* Simple Tools Database */
         const toolsData = [
             { name: "Bytecode Viewer", desc: "Самый простой просмотрщик Java файлов. Перетащил .jar файл и видишь исходный код.", cat: "Java", link: "https://bytecodeviewer.com/" },
             { name: "dnSpy", desc: "Главный декомпилятор и редактор для C# и .NET программ.", cat: "C# / .NET", link: "https://github.com/dnSpy/dnSpy" },
@@ -597,7 +543,6 @@ ADD RAX, 5</textarea>
             const btn = document.getElementById(`btn-${tabId}`);
             if (btn) btn.classList.add('active');
 
-            // Mobile tab navigation update
             document.querySelectorAll('[id$="-mob"]').forEach(el => {
                 el.classList.remove('text-[#00d0ff]', 'bg-white');
                 el.classList.add('text-slate-600');
@@ -767,7 +712,6 @@ ADD RAX, 5</textarea>
             }, 2500);
         }
 
-        /* Smooth Scroll to Top Function */
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -775,7 +719,6 @@ ADD RAX, 5</textarea>
             });
         }
 
-        /* Show/Hide Back-to-Top Button on Scroll */
         window.addEventListener('scroll', () => {
             const backToTopBtn = document.getElementById('back-to-top');
             if (backToTopBtn) {
