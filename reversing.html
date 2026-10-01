@@ -82,6 +82,46 @@
             100% { background-position: 0% 50%; }
         }
 
+        .telegram-cta {
+            position: fixed;
+            right: 220px;
+            bottom: 25px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            max-width: calc(100vw - 32px);
+            padding: 12px 22px;
+            border: 2px solid #00d0ff;
+            border-radius: 50px;
+            color: #0f172a;
+            font-size: 11px;
+            text-decoration: none;
+            background: linear-gradient(135deg, #00d0ff, #ffffff, #70e4ff, #00d0ff);
+            background-size: 300% 300%;
+            box-shadow: 0 10px 25px -5px rgba(0, 208, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.05);
+            animation: gradientShift 4s ease infinite;
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+        }
+
+        .telegram-cta:hover {
+            transform: translateY(-3px) scale(1.1) !important;
+            box-shadow: 0 15px 30px -5px rgba(0, 208, 255, 0.7), 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .telegram-cta:focus-visible {
+            outline: 3px solid #0f172a !important;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .telegram-cta {
+                animation: none;
+                transition: none;
+            }
+        }
+
         .btn-back-to-top {
             position: fixed;
             bottom: 25px;
@@ -116,6 +156,51 @@
             transform: translateY(-3px) scale(1.1) !important;
             box-shadow: 0 15px 30px -5px rgba(0, 208, 255, 0.7), 0 6px 15px rgba(0, 0, 0, 0.1);
         }
+
+        @media (max-width: 640px) {
+            .telegram-cta {
+                right: 190px;
+                padding: 12px 8px;
+                gap: 6px;
+            }
+
+            .btn-back-to-top {
+                padding: 12px 8px;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 370px) {
+            .telegram-cta {
+                right: 180px;
+                padding: 12px 6px;
+                gap: 4px;
+            }
+
+            .btn-back-to-top {
+                padding: 12px 6px;
+                gap: 4px;
+            }
+        }
+
+        @media (max-width: 340px) {
+            .telegram-cta {
+                right: 155px;
+                padding: 10px 4px;
+                gap: 4px;
+                font-size: 9px;
+            }
+
+            .btn-back-to-top {
+                padding: 10px 4px;
+                gap: 4px;
+                font-size: 9px;
+            }
+        }
+
+        footer.footer-with-actions {
+            padding-bottom: 96px;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#00d0ff] selection:text-[#0f172a]">
@@ -126,7 +211,7 @@
     </div>
 
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20 gap-4 sm:gap-6 xl:gap-8">
                 
                 <div class="flex items-center space-x-3 cursor-pointer hover-scale shrink-0" onclick="switchTab('articles')">
@@ -141,7 +226,7 @@
                     </div>
                 </div>
 
-                <nav class="hidden lg:flex items-center gap-1.5 xl:gap-3 shrink-0">
+                <nav class="hidden 2xl:flex items-center gap-1.5 xl:gap-3 shrink-0">
                     <button onclick="switchTab('articles')" id="btn-articles" class="nav-tab active hover-scale px-3 py-2.5 xl:px-4 xl:py-3 text-[11px] xl:text-xs uppercase tracking-wider transition-all rounded-xl flex items-center space-x-2 whitespace-nowrap">
                         <svg class="w-4 h-4 text-[#00d0ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C20.832 18.477 19.247 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                         <span>База знаний / Статьи</span>
@@ -160,14 +245,14 @@
                     </button>
                 </nav>
 
-                <div class="hidden xl:flex items-center space-x-2 px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-full shadow-sm shrink-0">
+                <div class="hidden 2xl:flex items-center space-x-2 px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-full shadow-sm shrink-0">
                     <span class="w-2.5 h-2.5 rounded-full bg-[#00d0ff] animate-pulse"></span>
                     <span class="text-[11px] text-slate-700 uppercase">ДЛЯ НОВИЧКОВ</span>
                 </div>
             </div>
         </div>
 
-        <div class="lg:hidden flex overflow-x-auto border-t border-slate-200 bg-slate-50 px-2 py-2 gap-1.5">
+        <div class="2xl:hidden flex overflow-x-auto border-t border-slate-200 bg-slate-50 px-2 py-2 gap-1.5">
             <button onclick="switchTab('articles')" id="btn-articles-mob" class="hover-scale px-3 py-2 text-xs uppercase whitespace-nowrap text-[#00d0ff] bg-white rounded-lg border border-slate-200">Статьи</button>
             <button onclick="switchTab('tools')" id="btn-tools-mob" class="hover-scale px-3 py-2 text-xs uppercase whitespace-nowrap text-slate-600 bg-white rounded-lg border border-slate-200">Софт & Скрипты</button>
             <button onclick="switchTab('practice')" id="btn-practice-mob" class="hover-scale px-3 py-2 text-xs uppercase whitespace-nowrap text-slate-600 bg-white rounded-lg border border-slate-200">Практика</button>
@@ -436,17 +521,30 @@ ADD RAX, 5</textarea>
         </div>
     </div>
 
-    <footer class="border-t border-slate-200 bg-slate-50 py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-3">
-                <span class="text-lg text-slate-900">REVERSE<span class="text-[#00d0ff]">//CORE</span></span>
-                <span class="text-xs text-slate-500">| Портал по реверсу для начинающих</span>
+    <footer class="footer-with-actions border-t border-slate-200 bg-slate-50 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex items-center space-x-3">
+                    <span class="text-lg text-slate-900">REVERSE<span class="text-[#00d0ff]">//CORE</span></span>
+                    <span class="text-xs text-slate-500">| Портал по реверсу для начинающих</span>
+                </div>
+                <div class="text-xs text-slate-500">
+                    &copy; 2026 REVERSE//CORE. Все права защищены.
+                </div>
             </div>
-            <div class="text-xs text-slate-500">
-                &copy; 2026 REVERSE//CORE. Все права защищены.
-            </div>
+
         </div>
     </footer>
+
+    <a href="https://t.me/bellizar1488" target="_blank" rel="noopener noreferrer" class="telegram-cta uppercase tracking-wider" aria-label="Написать нам в Telegram: @bellizar1488">
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m22 2-7 20-4-9-9-4 20-7Zm0 0L11 13"></path>
+        </svg>
+        <span>Написать нам</span>
+        <svg class="w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"></path>
+        </svg>
+    </a>
 
     <button id="back-to-top" onclick="scrollToTop()" class="btn-back-to-top uppercase tracking-wider" title="Вернуть наверх">
         <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
