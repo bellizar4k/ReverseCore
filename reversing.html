@@ -82,68 +82,151 @@
             100% { background-position: 0% 50%; }
         }
 
-        .telegram-cta {
-            position: fixed;
-            right: 220px;
-            bottom: 25px;
-            z-index: 1000;
+        .utility-action {
+            box-sizing: border-box;
             display: flex;
             align-items: center;
+            justify-content: center;
+            width: min(208px, calc(100vw - 32px));
+            height: 48px;
             gap: 8px;
-            max-width: calc(100vw - 32px);
-            padding: 12px 22px;
+            padding: 0 14px;
             border: 2px solid #00d0ff;
             border-radius: 50px;
             color: #0f172a;
             font-size: 11px;
+            line-height: 1;
             text-decoration: none;
             background: linear-gradient(135deg, #00d0ff, #ffffff, #70e4ff, #00d0ff);
             background-size: 300% 300%;
             box-shadow: 0 10px 25px -5px rgba(0, 208, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.05);
             animation: gradientShift 4s ease infinite;
             cursor: pointer;
-            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
         }
 
-        .telegram-cta:hover {
-            transform: translateY(-3px) scale(1.1) !important;
+        .utility-action:hover,
+        .btn-back-to-top.visible:hover {
+            transform: scale(1.04);
             box-shadow: 0 15px 30px -5px rgba(0, 208, 255, 0.7), 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .telegram-cta:focus-visible {
+        .details-toggle {
+            margin: 0;
+        }
+
+        .details-menu-wrap {
+            position: fixed;
+            right: 244px;
+            bottom: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .details-menu {
+            position: absolute;
+            right: 0;
+            bottom: calc(100% + 12px);
+            z-index: 1050;
+            display: grid;
+            gap: 4px;
+            width: min(248px, calc(100vw - 32px));
+            padding: 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 20px 45px -18px rgba(15, 23, 42, 0.35);
+        }
+
+        .details-menu[hidden] {
+            display: none !important;
+        }
+
+        .details-menu:not([hidden]) {
+            animation: detailsMenuIn 0.18s ease-out;
+        }
+
+        @keyframes detailsMenuIn {
+            from { opacity: 0; transform: translateY(8px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .details-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 12px;
+            border-radius: 11px;
+            color: #0f172a;
+            text-decoration: none;
+            transition: background-color 0.18s ease;
+        }
+
+        .details-menu-link:hover {
+            background: #f1f5f9;
+        }
+
+        .details-menu-link:focus-visible {
+            outline: 2px solid #00d0ff !important;
+            outline-offset: 2px;
+        }
+
+        .details-menu-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            color: #00a9d1;
+        }
+
+        .details-menu-copy {
+            display: grid;
+            flex: 1;
+            min-width: 0;
+            gap: 3px;
+        }
+
+        .details-menu-title {
+            color: #0f172a;
+            font-size: 10px;
+            letter-spacing: 0.04em;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+
+        .details-menu-caption {
+            color: #64748b;
+            font-size: 9px;
+            letter-spacing: 0;
+            line-height: 1.35;
+            text-transform: none;
+        }
+
+        .details-menu-arrow {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            color: #64748b;
+        }
+
+        .details-toggle:focus-visible {
             outline: 3px solid #0f172a !important;
             outline-offset: 4px;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .telegram-cta {
-                animation: none;
-                transition: none;
-            }
+        footer.footer-with-actions {
+            padding-bottom: 96px;
         }
 
         .btn-back-to-top {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            right: 24px;
+            bottom: 24px;
             z-index: 1000;
-            background: linear-gradient(135deg, #00d0ff, #ffffff, #70e4ff, #00d0ff);
-            background-size: 300% 300%;
-            animation: gradientShift 4s ease infinite;
-            color: #0f172a;
-            border-radius: 50px;
-            padding: 12px 22px;
-            font-size: 11px;
-            box-shadow: 0 10px 25px -5px rgba(0, 208, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.05);
-            border: 2px solid #00d0ff;
-            cursor: pointer;
             opacity: 0;
             pointer-events: none;
             transform: translateY(20px) scale(1);
-            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .btn-back-to-top.visible {
@@ -152,54 +235,31 @@
             transform: translateY(0) scale(1);
         }
 
-        .btn-back-to-top:hover {
-            transform: translateY(-3px) scale(1.1) !important;
-            box-shadow: 0 15px 30px -5px rgba(0, 208, 255, 0.7), 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
         @media (max-width: 640px) {
-            .telegram-cta {
-                right: 190px;
-                padding: 12px 8px;
-                gap: 6px;
+            .details-menu-wrap {
+                right: 16px;
+                bottom: 76px;
+            }
+
+            footer.footer-with-actions {
+                padding-bottom: 144px;
             }
 
             .btn-back-to-top {
-                padding: 12px 8px;
-                gap: 6px;
+                right: 16px;
+                bottom: 16px;
             }
         }
 
-        @media (max-width: 370px) {
-            .telegram-cta {
-                right: 180px;
-                padding: 12px 6px;
-                gap: 4px;
+        @media (prefers-reduced-motion: reduce) {
+            .utility-action {
+                animation: none;
+                transition: none;
             }
 
-            .btn-back-to-top {
-                padding: 12px 6px;
-                gap: 4px;
+            .details-menu:not([hidden]) {
+                animation: none;
             }
-        }
-
-        @media (max-width: 340px) {
-            .telegram-cta {
-                right: 155px;
-                padding: 10px 4px;
-                gap: 4px;
-                font-size: 9px;
-            }
-
-            .btn-back-to-top {
-                padding: 10px 4px;
-                gap: 4px;
-                font-size: 9px;
-            }
-        }
-
-        footer.footer-with-actions {
-            padding-bottom: 96px;
         }
     </style>
 </head>
@@ -532,21 +592,50 @@ ADD RAX, 5</textarea>
                     &copy; 2026 REVERSE//CORE. Все права защищены.
                 </div>
             </div>
-
         </div>
     </footer>
 
-    <a href="https://t.me/bellizar1488" target="_blank" rel="noopener noreferrer" class="telegram-cta uppercase tracking-wider" aria-label="Написать нам в Telegram: @bellizar1488">
-        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m22 2-7 20-4-9-9-4 20-7Zm0 0L11 13"></path>
-        </svg>
-        <span>Написать нам</span>
-        <svg class="w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"></path>
-        </svg>
-    </a>
+    <div class="details-menu-wrap">
+        <div id="details-menu" class="details-menu" aria-label="Контакты и местоположение" hidden>
+            <a href="https://t.me/bellizar1488" target="_blank" rel="noopener noreferrer" class="details-menu-link" aria-label="Написать в Telegram: @bellizar1488">
+                <svg class="details-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m22 2-7 20-4-9-9-4 20-7Zm0 0L11 13"></path>
+                </svg>
+                <span class="details-menu-copy">
+                    <span class="details-menu-title">Telegram</span>
+                    <span class="details-menu-caption">@bellizar1488</span>
+                </span>
+                <svg class="details-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"></path>
+                </svg>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=McDonald%27s%2C%20Aksay-2%208A%2C%20Almaty&amp;query_place_id=ChIJh04NvoRpgzgRrmGhgegn-jg" target="_blank" rel="noopener noreferrer" class="details-menu-link" aria-label="Открыть McDonald's в микрорайоне Аксай-2, 8А, на Google Maps">
+                <svg class="details-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="2.5" stroke-width="2"></circle>
+                </svg>
+                <span class="details-menu-copy">
+                    <span class="details-menu-title">Местоположение</span>
+                    <span class="details-menu-caption">McDonald's · Аксай-2, 8А</span>
+                </span>
+                <svg class="details-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"></path>
+                </svg>
+            </a>
+        </div>
+        <button id="details-toggle" type="button" onclick="toggleDetailsMenu()" class="utility-action details-toggle uppercase tracking-wider" aria-label="Подробнее" aria-expanded="false" aria-controls="details-menu">
+            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v5m0-8h.01"></path>
+            </svg>
+            <span>Подробнее</span>
+            <svg id="details-chevron" class="w-4 h-4 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"></path>
+            </svg>
+        </button>
+    </div>
 
-    <button id="back-to-top" onclick="scrollToTop()" class="btn-back-to-top uppercase tracking-wider" title="Вернуть наверх">
+    <button id="back-to-top" onclick="scrollToTop()" class="utility-action btn-back-to-top uppercase tracking-wider" title="Вернуть наверх">
         <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path>
         </svg>
@@ -816,6 +905,36 @@ ADD RAX, 5</textarea>
                 behavior: 'smooth'
             });
         }
+
+        function setDetailsMenuOpen(isOpen) {
+            const menu = document.getElementById('details-menu');
+            const toggle = document.getElementById('details-toggle');
+            if (!menu || !toggle) return;
+
+            menu.hidden = !isOpen;
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            document.getElementById('details-chevron')?.classList.toggle('rotate-180', isOpen);
+            if (isOpen) menu.querySelector('a')?.focus();
+        }
+
+        function toggleDetailsMenu() {
+            const menu = document.getElementById('details-menu');
+            if (menu) setDetailsMenuOpen(menu.hidden);
+        }
+
+        document.addEventListener('click', event => {
+            const menuWrap = document.querySelector('.details-menu-wrap');
+            if (menuWrap && !menuWrap.contains(event.target)) setDetailsMenuOpen(false);
+            if (event.target.closest('#details-menu a')) setDetailsMenuOpen(false);
+        });
+
+        document.addEventListener('keydown', event => {
+            const toggle = document.getElementById('details-toggle');
+            if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+                setDetailsMenuOpen(false);
+                toggle.focus();
+            }
+        });
 
         window.addEventListener('scroll', () => {
             const backToTopBtn = document.getElementById('back-to-top');
