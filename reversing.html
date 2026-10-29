@@ -1153,6 +1153,276 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        .article-card-rating {
+            display: grid;
+            gap: 7px;
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(148, 163, 184, 0.22);
+        }
+
+        #article-modal {
+            z-index: 1100;
+        }
+
+        .article-rating-label {
+            color: #718096;
+            font-size: 8px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .article-rating-widget {
+            display: flex;
+            min-width: 0;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .article-stars {
+            display: inline-flex;
+            flex: 0 0 auto;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .rating-star {
+            display: grid;
+            width: 27px;
+            height: 27px;
+            flex: 0 0 auto;
+            place-items: center;
+            padding: 0;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            color: #c1ccd8;
+            background: transparent;
+            cursor: pointer;
+            transition: color 0.16s ease, background-color 0.16s ease, transform 0.16s ease;
+        }
+
+        .rating-star svg {
+            display: block;
+            width: 17px;
+            height: 17px;
+        }
+
+        .rating-star.is-active,
+        .rating-star:hover {
+            color: #e99b18;
+        }
+
+        .rating-star:hover {
+            background: rgba(233, 155, 24, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .article-rating-note {
+            min-width: 0;
+            color: #64748b;
+            font-size: 9px;
+            line-height: 1.4;
+            text-align: right;
+        }
+
+        .article-feedback-panel {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 18px;
+            border: 1px solid rgba(0, 166, 198, 0.24);
+            border-radius: 18px;
+            background:
+                radial-gradient(ellipse at 92% 0%, rgba(0, 208, 255, 0.1), transparent 46%),
+                linear-gradient(135deg, #ffffff, #f4fafc);
+        }
+
+        .article-feedback-intro {
+            display: grid;
+            gap: 5px;
+        }
+
+        .article-feedback-kicker {
+            color: #0284a8;
+            font-size: 8px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .article-feedback-title {
+            margin: 0;
+            color: #0f172a;
+            font-size: 15px;
+            letter-spacing: -0.02em;
+            line-height: 1.35;
+        }
+
+        .article-feedback-description {
+            margin: 0;
+            color: #64748b;
+            font-size: 9px;
+            line-height: 1.55;
+        }
+
+        .article-feedback-rating,
+        .article-feedback-voting {
+            display: grid;
+            gap: 8px;
+            padding-top: 13px;
+            border-top: 1px solid rgba(148, 163, 184, 0.22);
+        }
+
+        .article-feedback-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .article-feedback-hint {
+            color: #94a3b8;
+            font-size: 8px;
+            line-height: 1.4;
+            text-align: right;
+        }
+
+        .article-vote-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .article-vote-button {
+            display: inline-flex;
+            min-width: 0;
+            min-height: 42px;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 8px 10px;
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            border-radius: 12px;
+            color: #334155;
+            background: rgba(255, 255, 255, 0.76);
+            font-size: 9px;
+            line-height: 1.35;
+            cursor: pointer;
+            transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+        }
+
+        .article-vote-button svg {
+            width: 16px;
+            height: 16px;
+            flex: 0 0 auto;
+        }
+
+        .article-vote-button:hover {
+            border-color: rgba(0, 166, 198, 0.6);
+            background: rgba(0, 208, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .article-vote-button.is-selected {
+            border-color: rgba(0, 166, 198, 0.62);
+            color: #07566a;
+            background: rgba(0, 208, 255, 0.14);
+            box-shadow: inset 0 0 0 1px rgba(0, 166, 198, 0.12);
+        }
+
+        .article-vote-status {
+            min-height: 13px;
+            margin: 0;
+            color: #0284a8;
+            font-size: 9px;
+            line-height: 1.45;
+        }
+
+        .article-feedback-footnote {
+            margin: 0;
+            padding-top: 10px;
+            border-top: 1px solid rgba(148, 163, 184, 0.18);
+            color: #94a3b8;
+            font-size: 8px;
+            line-height: 1.5;
+        }
+
+        html[data-theme="dark"] .article-card-rating,
+        html[data-theme="dark"] .article-feedback-rating,
+        html[data-theme="dark"] .article-feedback-voting,
+        html[data-theme="dark"] .article-feedback-footnote {
+            border-color: rgba(148, 163, 184, 0.18);
+        }
+
+        html[data-theme="dark"] .article-rating-label,
+        html[data-theme="dark"] .article-rating-note {
+            color: #9eacbc;
+        }
+
+        html[data-theme="dark"] .rating-star {
+            color: #53657a;
+        }
+
+        html[data-theme="dark"] .rating-star.is-active,
+        html[data-theme="dark"] .rating-star:hover {
+            color: #ffc45c;
+        }
+
+        html[data-theme="dark"] .article-feedback-panel {
+            border-color: rgba(56, 189, 248, 0.2);
+            background:
+                radial-gradient(ellipse at 92% 0%, rgba(0, 208, 255, 0.12), transparent 46%),
+                linear-gradient(135deg, #142233, #101b29);
+        }
+
+        html[data-theme="dark"] .article-feedback-kicker,
+        html[data-theme="dark"] .article-vote-status {
+            color: #55d7ef;
+        }
+
+        html[data-theme="dark"] .article-feedback-title {
+            color: #e6edf5;
+        }
+
+        html[data-theme="dark"] .article-feedback-description,
+        html[data-theme="dark"] .article-feedback-hint,
+        html[data-theme="dark"] .article-feedback-footnote {
+            color: #93a4b8;
+        }
+
+        html[data-theme="dark"] .article-vote-button {
+            border-color: rgba(148, 163, 184, 0.2);
+            color: #c8d5e2;
+            background: rgba(5, 13, 23, 0.34);
+        }
+
+        html[data-theme="dark"] .article-vote-button:hover,
+        html[data-theme="dark"] .article-vote-button.is-selected {
+            border-color: rgba(0, 208, 255, 0.48);
+            color: #8cecff;
+            background: rgba(0, 208, 255, 0.1);
+        }
+
+        @media (max-width: 480px) {
+            .article-feedback-panel {
+                padding: 14px;
+            }
+
+            .article-vote-button {
+                gap: 5px;
+                padding-right: 6px;
+                padding-left: 6px;
+                font-size: 8px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .rating-star,
+            .article-vote-button {
+                transition: none;
+            }
+        }
     </style>
     <script>
         (() => {
@@ -1699,6 +1969,147 @@ ADD RAX, 5</textarea>
         ];
 
         let activeTag = "ALL";
+        const ARTICLE_FEEDBACK_STORAGE_KEY = "reversecore-article-feedback-v1";
+        let activeArticleId = null;
+        let articleFeedback = (() => {
+            try {
+                const stored = JSON.parse(localStorage.getItem(ARTICLE_FEEDBACK_STORAGE_KEY) || "{}");
+                return stored && typeof stored === "object" && !Array.isArray(stored) ? stored : {};
+            } catch {
+                return {};
+            }
+        })();
+
+        function getArticleFeedback(articleId) {
+            const stored = articleFeedback[articleId];
+            const rating = Number.isInteger(stored?.rating) && stored.rating >= 1 && stored.rating <= 5 ? stored.rating : 0;
+            const vote = stored?.vote === "clear" || stored?.vote === "simpler" ? stored.vote : "";
+            return { rating, vote };
+        }
+
+        function saveArticleFeedback() {
+            try {
+                localStorage.setItem(ARTICLE_FEEDBACK_STORAGE_KEY, JSON.stringify(articleFeedback));
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        function ratingWidgetMarkup(articleId, placement) {
+            const rating = getArticleFeedback(articleId).rating;
+            const emptyLabel = placement === "card" ? "Поставьте оценку" : "Оцените материал";
+            const stars = Array.from({ length: 5 }, (_, index) => {
+                const score = index + 1;
+                return `
+                    <button type="button" class="rating-star ${score <= rating ? "is-active" : ""}" data-rating-value="${score}" onclick="rateArticle('${articleId}', ${score})" aria-label="Оценить статью на ${score} из 5" aria-pressed="${score === rating}" title="${score} из 5">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.93 6.08 6.71.98-4.82 4.7 1.14 6.64L12 17.26l-5.96 3.14 1.14-6.64-4.82-4.7 6.71-.98L12 2Z"></path></svg>
+                    </button>
+                `;
+            }).join("");
+
+            return `
+                <div class="article-rating-widget" data-rating-widget data-article-id="${articleId}" data-placement="${placement}">
+                    <div class="article-stars" role="group" aria-label="Рейтинг статьи от 1 до 5">
+                        ${stars}
+                    </div>
+                    <span class="article-rating-note" data-rating-note aria-live="polite">${rating ? `Ваша оценка: ${rating}/5` : emptyLabel}</span>
+                </div>
+            `;
+        }
+
+        function updateRatingWidgets(articleId) {
+            const rating = getArticleFeedback(articleId).rating;
+            document.querySelectorAll("[data-rating-widget]").forEach(widget => {
+                if (widget.dataset.articleId !== articleId) return;
+                widget.querySelectorAll("[data-rating-value]").forEach(button => {
+                    const score = Number(button.dataset.ratingValue);
+                    button.classList.toggle("is-active", score <= rating);
+                    button.setAttribute("aria-pressed", String(score === rating));
+                });
+                const note = widget.querySelector("[data-rating-note]");
+                if (note) {
+                    note.textContent = rating
+                        ? `Ваша оценка: ${rating}/5`
+                        : widget.dataset.placement === "card" ? "Поставьте оценку" : "Оцените материал";
+                }
+            });
+        }
+
+        function renderArticleFeedbackPanel(articleId) {
+            const feedback = getArticleFeedback(articleId);
+            const voteLabels = { clear: "всё понятно", simpler: "нужно проще" };
+            const voteStatus = feedback.vote
+                ? `Ваш голос: «${voteLabels[feedback.vote]}». Сохранён в этом браузере.`
+                : "Выберите один вариант. Голос можно изменить позже.";
+
+            return `
+                <section class="article-feedback-panel" aria-label="Рейтинг и голосование">
+                    <div class="article-feedback-intro">
+                        <span class="article-feedback-kicker">Обратная связь</span>
+                        <h3 class="article-feedback-title">Помогите сделать разборы понятнее</h3>
+                        <p class="article-feedback-description">Оцените материал и отметьте, насколько ясным было объяснение.</p>
+                    </div>
+                    <div class="article-feedback-rating">
+                        <div class="article-feedback-question">
+                            <span class="article-rating-label">Рейтинг статьи</span>
+                            <span class="article-feedback-hint">1 — слабо · 5 — отлично</span>
+                        </div>
+                        ${ratingWidgetMarkup(articleId, "modal")}
+                    </div>
+                    <div class="article-feedback-voting">
+                        <div class="article-feedback-question">
+                            <span class="article-rating-label">Было понятно?</span>
+                            <span class="article-feedback-hint">Один голос</span>
+                        </div>
+                        <div class="article-vote-row">
+                            <button type="button" class="article-vote-button ${feedback.vote === "clear" ? "is-selected" : ""}" data-feedback-vote="clear" onclick="voteArticle('clear')" aria-pressed="${feedback.vote === "clear"}">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12 4 4L19 6"></path></svg>
+                                <span>Да, всё понятно</span>
+                            </button>
+                            <button type="button" class="article-vote-button ${feedback.vote === "simpler" ? "is-selected" : ""}" data-feedback-vote="simpler" onclick="voteArticle('simpler')" aria-pressed="${feedback.vote === "simpler"}">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v14H6.5A2.5 2.5 0 0 0 4 19.5v-14Zm0 0v14A2.5 2.5 0 0 1 6.5 17H20"></path></svg>
+                                <span>Нужно объяснить проще</span>
+                            </button>
+                        </div>
+                        <p id="article-vote-status" class="article-vote-status" aria-live="polite">${voteStatus}</p>
+                    </div>
+                    <p class="article-feedback-footnote">Ваш ответ хранится только в этом браузере и не виден другим посетителям.</p>
+                </section>
+            `;
+        }
+
+        function rateArticle(articleId, score) {
+            if (!articlesData.some(article => article.id === articleId)) return;
+            const rating = Number(score);
+            if (!Number.isInteger(rating) || rating < 1 || rating > 5) return;
+
+            articleFeedback[articleId] = { ...getArticleFeedback(articleId), rating };
+            const saved = saveArticleFeedback();
+            updateRatingWidgets(articleId);
+            showToast(saved ? "Спасибо за оценку!" : "Оценка сохранена до закрытия страницы.");
+        }
+
+        function voteArticle(vote) {
+            if (!activeArticleId || (vote !== "clear" && vote !== "simpler")) return;
+
+            articleFeedback[activeArticleId] = { ...getArticleFeedback(activeArticleId), vote };
+            const saved = saveArticleFeedback();
+            document.querySelectorAll("[data-feedback-vote]").forEach(button => {
+                const selected = button.dataset.feedbackVote === vote;
+                button.classList.toggle("is-selected", selected);
+                button.setAttribute("aria-pressed", String(selected));
+            });
+
+            const status = document.getElementById("article-vote-status");
+            const label = vote === "clear" ? "всё понятно" : "нужно проще";
+            if (status) {
+                status.textContent = saved
+                    ? `Ваш голос «${label}» сохранён в этом браузере.`
+                    : `Ваш голос «${label}» сохранён до закрытия страницы.`;
+            }
+            showToast(saved ? "Голос учтён. Спасибо!" : "Голос отмечен до закрытия страницы.");
+        }
 
         function applyTheme(theme, animate = false) {
             const root = document.documentElement;
@@ -1772,7 +2183,12 @@ ADD RAX, 5</textarea>
                         <p class="text-xs text-slate-600 leading-relaxed">${art.snippet}</p>
                     </div>
 
-                    <div class="pt-6">
+                    <div class="article-card-rating">
+                        <span class="article-rating-label">Ваша оценка</span>
+                        ${ratingWidgetMarkup(art.id, "card")}
+                    </div>
+
+                    <div class="pt-4">
                         <button onclick="openArticleModal('${art.id}')" class="hover-scale w-full py-2.5 bg-slate-100 hover:bg-[#00d0ff] text-slate-900 rounded-xl text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2">
                             <span>Открыть статью</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -1801,15 +2217,17 @@ ADD RAX, 5</textarea>
             const art = articlesData.find(a => a.id === id);
             if (!art) return;
 
+            activeArticleId = id;
             document.getElementById('modal-title').innerText = art.title;
             document.getElementById('modal-tags').innerHTML = art.tags.map(t => `<span class="text-[10px] bg-[#00d0ff]/20 text-slate-900 px-2 py-0.5 rounded uppercase">${t}</span>`).join('');
-            document.getElementById('modal-body').innerHTML = art.content;
+            document.getElementById('modal-body').innerHTML = art.content + renderArticleFeedbackPanel(id);
 
             document.getElementById('article-modal').classList.remove('hidden');
         }
 
         function closeModal() {
             document.getElementById('article-modal').classList.add('hidden');
+            activeArticleId = null;
         }
 
         function renderTools() {
