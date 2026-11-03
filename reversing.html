@@ -1093,7 +1093,7 @@
             }
         }
 
-        @media (max-width: 380px) {
+        @media (max-width: 440px) {
             .header-main-row {
                 gap: 10px;
             }
@@ -1154,272 +1154,424 @@
             }
         }
 
-        .article-card-rating {
-            display: grid;
-            gap: 7px;
-            margin-top: 18px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(148, 163, 184, 0.22);
+        .rating-widget {
+            color: #334155;
         }
 
         #article-modal {
             z-index: 1100;
         }
 
-        .article-rating-label {
-            color: #718096;
+        .rating-widget-compact {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px 12px;
+            flex-wrap: wrap;
+            padding: 11px 12px;
+            border: 1px solid rgba(148, 163, 184, 0.24);
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.94), rgba(239, 249, 252, 0.82));
+        }
+
+        .rating-widget-compact .rating-widget-copy {
+            display: grid;
+            gap: 4px;
+        }
+
+        .rating-widget-kicker {
+            color: #64748b;
             font-size: 8px;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.12em;
+            line-height: 1.2;
             text-transform: uppercase;
         }
 
-        .article-rating-widget {
+        .rating-widget-summary {
             display: flex;
+            align-items: baseline;
+            gap: 4px;
             min-width: 0;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
+            white-space: nowrap;
         }
 
-        .article-stars {
-            display: inline-flex;
+        .rating-average {
+            color: #0f172a;
+            font-size: 16px;
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .rating-out-of {
+            color: #94a3b8;
+            font-size: 9px;
+        }
+
+        .rating-count {
+            overflow: hidden;
+            color: #64748b;
+            font-size: 9px;
+            text-overflow: ellipsis;
+        }
+
+        .rating-stars {
+            display: flex;
+            align-items: center;
+            gap: 1px;
             flex: 0 0 auto;
-            align-items: center;
-            gap: 2px;
         }
 
-        .rating-star {
+        .rating-star-button {
             display: grid;
-            width: 27px;
-            height: 27px;
+            width: 30px;
+            height: 32px;
             flex: 0 0 auto;
             place-items: center;
             padding: 0;
             border: 1px solid transparent;
-            border-radius: 8px;
-            color: #c1ccd8;
+            border-radius: 9px;
+            color: #b5c0cc;
             background: transparent;
+            font-size: 21px;
+            line-height: 1;
             cursor: pointer;
-            transition: color 0.16s ease, background-color 0.16s ease, transform 0.16s ease;
+            transition: color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
         }
 
-        .rating-star svg {
-            display: block;
-            width: 17px;
-            height: 17px;
+        .rating-widget-compact .rating-star-button {
+            width: 25px;
+            height: 28px;
+            font-size: 18px;
         }
 
-        .rating-star.is-active,
-        .rating-star:hover {
-            color: #e99b18;
+        .rating-star-button:hover,
+        .rating-star-button.is-filled {
+            color: #e6a72d;
         }
 
-        .rating-star:hover {
-            background: rgba(233, 155, 24, 0.12);
-            transform: translateY(-1px);
+        .rating-star-button:hover {
+            transform: translateY(-2px) scale(1.08);
         }
 
-        .article-rating-note {
-            min-width: 0;
+        .rating-star-button:focus-visible {
+            outline: 2px solid #00a9d1 !important;
+            outline-offset: 2px;
+        }
+
+        .rating-widget-status {
+            width: 100%;
+            margin: 0;
             color: #64748b;
             font-size: 9px;
             line-height: 1.4;
-            text-align: right;
         }
 
-        .article-feedback-panel {
+        .rating-widget-modal {
             display: grid;
             gap: 15px;
-            margin-top: 20px;
-            padding: 18px;
+            margin-top: 24px;
+            padding: clamp(17px, 3vw, 24px);
             border: 1px solid rgba(0, 166, 198, 0.24);
-            border-radius: 18px;
+            border-radius: 20px;
             background:
-                radial-gradient(ellipse at 92% 0%, rgba(0, 208, 255, 0.1), transparent 46%),
-                linear-gradient(135deg, #ffffff, #f4fafc);
+                radial-gradient(ellipse at 100% 0%, rgba(0, 208, 255, 0.11), transparent 46%),
+                linear-gradient(135deg, #f8fcfe, #ffffff 66%, #f0faff);
+            box-shadow: 0 15px 38px -28px rgba(15, 23, 42, 0.35), 0 1px 0 #ffffff inset;
         }
 
-        .article-feedback-intro {
+        .rating-widget-modal .rating-widget-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .rating-widget-modal .rating-widget-copy {
             display: grid;
             gap: 5px;
         }
 
-        .article-feedback-kicker {
+        .rating-widget-modal .rating-widget-kicker {
             color: #0284a8;
-            font-size: 8px;
+            font-size: 9px;
             letter-spacing: 0.15em;
-            text-transform: uppercase;
         }
 
-        .article-feedback-title {
+        .rating-widget-modal .rating-widget-title {
             margin: 0;
             color: #0f172a;
-            font-size: 15px;
-            letter-spacing: -0.02em;
+            font-size: clamp(14px, 2vw, 18px);
+            letter-spacing: -0.025em;
+            line-height: 1.25;
+        }
+
+        .rating-widget-modal .rating-widget-description {
+            margin: 0;
+            color: #64748b;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .rating-widget-modal .rating-widget-summary {
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            max-width: 150px;
+            white-space: normal;
+        }
+
+        .rating-widget-modal .rating-average {
+            font-size: 24px;
+        }
+
+        .rating-widget-modal .rating-count {
+            width: 100%;
+            text-align: right;
+            white-space: normal;
             line-height: 1.35;
         }
 
-        .article-feedback-description {
-            margin: 0;
-            color: #64748b;
-            font-size: 9px;
-            line-height: 1.55;
-        }
-
-        .article-feedback-rating,
-        .article-feedback-voting {
-            display: grid;
-            gap: 8px;
-            padding-top: 13px;
-            border-top: 1px solid rgba(148, 163, 184, 0.22);
-        }
-
-        .article-feedback-question {
+        .rating-widget-modal .rating-widget-actions {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 12px;
+            padding: 12px 13px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.72);
         }
 
-        .article-feedback-hint {
-            color: #94a3b8;
-            font-size: 8px;
-            line-height: 1.4;
-            text-align: right;
-        }
-
-        .article-vote-row {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 8px;
-        }
-
-        .article-vote-button {
-            display: inline-flex;
-            min-width: 0;
-            min-height: 42px;
-            align-items: center;
-            justify-content: center;
+        .rating-local-note {
+            display: flex;
+            align-items: flex-start;
             gap: 7px;
-            padding: 8px 10px;
-            border: 1px solid rgba(148, 163, 184, 0.32);
-            border-radius: 12px;
-            color: #334155;
-            background: rgba(255, 255, 255, 0.76);
-            font-size: 9px;
-            line-height: 1.35;
-            cursor: pointer;
-            transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-        }
-
-        .article-vote-button svg {
-            width: 16px;
-            height: 16px;
-            flex: 0 0 auto;
-        }
-
-        .article-vote-button:hover {
-            border-color: rgba(0, 166, 198, 0.6);
-            background: rgba(0, 208, 255, 0.08);
-            transform: translateY(-1px);
-        }
-
-        .article-vote-button.is-selected {
-            border-color: rgba(0, 166, 198, 0.62);
-            color: #07566a;
-            background: rgba(0, 208, 255, 0.14);
-            box-shadow: inset 0 0 0 1px rgba(0, 166, 198, 0.12);
-        }
-
-        .article-vote-status {
-            min-height: 13px;
             margin: 0;
-            color: #0284a8;
+            color: #64748b;
             font-size: 9px;
             line-height: 1.45;
         }
 
-        .article-feedback-footnote {
-            margin: 0;
-            padding-top: 10px;
-            border-top: 1px solid rgba(148, 163, 184, 0.18);
-            color: #94a3b8;
-            font-size: 8px;
-            line-height: 1.5;
+        .rating-local-note svg {
+            width: 14px;
+            height: 14px;
+            flex: 0 0 auto;
+            color: #0284a8;
         }
 
-        html[data-theme="dark"] .article-card-rating,
-        html[data-theme="dark"] .article-feedback-rating,
-        html[data-theme="dark"] .article-feedback-voting,
-        html[data-theme="dark"] .article-feedback-footnote {
-            border-color: rgba(148, 163, 184, 0.18);
-        }
-
-        html[data-theme="dark"] .article-rating-label,
-        html[data-theme="dark"] .article-rating-note {
-            color: #9eacbc;
-        }
-
-        html[data-theme="dark"] .rating-star {
-            color: #53657a;
-        }
-
-        html[data-theme="dark"] .rating-star.is-active,
-        html[data-theme="dark"] .rating-star:hover {
-            color: #ffc45c;
-        }
-
-        html[data-theme="dark"] .article-feedback-panel {
-            border-color: rgba(56, 189, 248, 0.2);
-            background:
-                radial-gradient(ellipse at 92% 0%, rgba(0, 208, 255, 0.12), transparent 46%),
-                linear-gradient(135deg, #142233, #101b29);
-        }
-
-        html[data-theme="dark"] .article-feedback-kicker,
-        html[data-theme="dark"] .article-vote-status {
-            color: #55d7ef;
-        }
-
-        html[data-theme="dark"] .article-feedback-title {
-            color: #e6edf5;
-        }
-
-        html[data-theme="dark"] .article-feedback-description,
-        html[data-theme="dark"] .article-feedback-hint,
-        html[data-theme="dark"] .article-feedback-footnote {
+        html[data-theme="dark"] .rating-count,
+        html[data-theme="dark"] .rating-widget-status,
+        html[data-theme="dark"] .rating-local-note,
+        html[data-theme="dark"] .rating-widget-kicker {
             color: #93a4b8;
         }
 
-        html[data-theme="dark"] .article-vote-button {
-            border-color: rgba(148, 163, 184, 0.2);
-            color: #c8d5e2;
-            background: rgba(5, 13, 23, 0.34);
+        html[data-theme="dark"] .rating-widget-compact {
+            border-color: rgba(148, 163, 184, 0.18);
+            background: linear-gradient(135deg, rgba(18, 31, 47, 0.92), rgba(12, 31, 43, 0.82));
         }
 
-        html[data-theme="dark"] .article-vote-button:hover,
-        html[data-theme="dark"] .article-vote-button.is-selected {
-            border-color: rgba(0, 208, 255, 0.48);
-            color: #8cecff;
-            background: rgba(0, 208, 255, 0.1);
+        html[data-theme="dark"] .rating-average,
+        html[data-theme="dark"] .rating-widget-modal .rating-widget-title {
+            color: #e6edf5;
         }
 
-        @media (max-width: 480px) {
-            .article-feedback-panel {
-                padding: 14px;
+        html[data-theme="dark"] .rating-star-button {
+            color: #617286;
+        }
+
+        html[data-theme="dark"] .rating-star-button:hover,
+        html[data-theme="dark"] .rating-star-button.is-filled {
+            color: #ffd16b;
+        }
+
+        html[data-theme="dark"] .rating-widget-modal {
+            border-color: rgba(0, 208, 255, 0.22);
+            background:
+                radial-gradient(ellipse at 100% 0%, rgba(0, 208, 255, 0.12), transparent 46%),
+                linear-gradient(135deg, #142335, #101a28 66%, #102331);
+            box-shadow: 0 15px 38px -28px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+        }
+
+        html[data-theme="dark"] .rating-widget-modal .rating-widget-kicker {
+            color: #55d7ef;
+        }
+
+        html[data-theme="dark"] .rating-widget-modal .rating-widget-description {
+            color: #93a4b8;
+        }
+
+        html[data-theme="dark"] .rating-widget-modal .rating-widget-actions {
+            border-color: rgba(148, 163, 184, 0.16);
+            background: rgba(5, 13, 23, 0.36);
+        }
+
+        html[data-theme="dark"] .rating-local-note svg {
+            color: #55d7ef;
+        }
+
+        @media (max-width: 640px) {
+            .rating-widget-modal .rating-widget-header {
+                align-items: flex-start;
             }
 
-            .article-vote-button {
+            .rating-widget-modal .rating-star-button,
+            .rating-widget-compact .rating-star-button {
+                width: 42px;
+                height: 42px;
+                font-size: 23px;
+            }
+
+            .rating-widget-compact .rating-stars {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .rating-widget-modal .rating-widget-actions {
+                align-items: flex-start;
+                flex-direction: column;
                 gap: 5px;
-                padding-right: 6px;
-                padding-left: 6px;
-                font-size: 8px;
+            }
+
+            .rating-widget-modal .rating-widget-summary {
+                max-width: 112px;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .rating-star,
-            .article-vote-button {
+            .rating-star-button {
+                transition: none;
+            }
+        }
+
+        .ambient-toggle {
+            position: relative;
+            display: grid;
+            width: 46px;
+            height: 46px;
+            flex: 0 0 auto;
+            place-items: center;
+            overflow: hidden;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.76);
+            border-radius: 999px;
+            color: #0284a8;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.56), rgba(236, 247, 252, 0.18));
+            box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07), 0 1px 0 rgba(255, 255, 255, 0.82) inset;
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            backdrop-filter: blur(16px) saturate(180%);
+            cursor: pointer;
+            transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .ambient-toggle::before {
+            content: "";
+            position: absolute;
+            inset: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        .ambient-toggle::after {
+            content: "";
+            position: absolute;
+            inset: -50%;
+            border-radius: inherit;
+            background: radial-gradient(circle, rgba(0, 208, 255, 0.22), transparent 60%);
+            opacity: 0.68;
+            transform: scale(0.75);
+            transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .ambient-toggle:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+        }
+
+        .ambient-toggle:focus-visible {
+            outline: 2px solid #00d0ff !important;
+            outline-offset: 4px;
+        }
+
+        .ambient-wave {
+            position: relative;
+            z-index: 1;
+            width: 20px;
+            height: 20px;
+        }
+
+        .ambient-state {
+            position: absolute;
+            z-index: 2;
+            right: 6px;
+            bottom: 6px;
+            width: 6px;
+            height: 6px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            background: #94a3b8;
+            box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.08);
+            font-size: 0;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ambient-toggle.is-playing {
+            border-color: rgba(0, 208, 255, 0.72);
+            box-shadow: 0 0 24px rgba(0, 208, 255, 0.16), 0 8px 22px rgba(15, 23, 42, 0.07);
+        }
+
+        .ambient-toggle.is-playing::after {
+            opacity: 0.95;
+            transform: scale(1.05);
+        }
+
+        .ambient-toggle.is-playing .ambient-state {
+            background: #00d0ff;
+            box-shadow: 0 0 9px rgba(0, 208, 255, 0.9);
+        }
+
+        .ambient-toggle.is-playing .ambient-wave {
+            animation: ambientPulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes ambientPulse {
+            50% { opacity: 0.52; transform: scale(0.88); }
+        }
+
+        @media (max-width: 640px) {
+            .header-controls {
+                gap: 6px !important;
+            }
+
+            .ambient-toggle,
+            .theme-toggle {
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        html[data-theme="dark"] .ambient-toggle {
+            color: #55d7ef;
+            background: linear-gradient(145deg, rgba(22, 38, 58, 0.54), rgba(9, 19, 33, 0.28));
+            border-color: rgba(184, 206, 224, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16), 0 1px 0 rgba(255, 255, 255, 0.13) inset;
+        }
+
+        html[data-theme="dark"] .ambient-toggle::before {
+            border-color: rgba(205, 223, 239, 0.16);
+        }
+
+        html[data-theme="dark"] .ambient-state {
+            border-color: #17283a;
+            background: #64748b;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ambient-toggle,
+            .ambient-toggle::after,
+            .ambient-toggle.is-playing .ambient-wave {
+                animation: none !important;
                 transition: none;
             }
         }
@@ -1481,16 +1633,24 @@
                     <span class="text-[11px] text-slate-700 uppercase">ДЛЯ НОВИЧКОВ</span>
                 </div>
 
-                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Включить тёмную тему" title="Включить тёмную тему" aria-pressed="false">
-                    <svg class="theme-toggle-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="12" r="3.6"></circle>
-                        <path d="M12 2.5v2M12 19.5v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2.5 12h2m15 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
-                    </svg>
-                    <svg class="theme-toggle-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M20.1 15.3A8.4 8.4 0 0 1 8.7 3.9 8.7 8.7 0 1 0 20.1 15.3Z"></path>
-                        <path d="m16.8 4.1.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path>
-                    </svg>
-                </button>
+                <div class="header-controls flex items-center gap-2 shrink-0">
+                    <button id="ambient-toggle" type="button" class="ambient-toggle" aria-label="Включить киберпанк-эмбиент" aria-pressed="false" title="Включить киберпанк-эмбиент">
+                        <svg class="ambient-wave" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12h3l2.1-5 3.8 10 3.1-7 1.5 2H21"></path>
+                        </svg>
+                        <span class="ambient-state" data-ambient-state aria-hidden="true"></span>
+                    </button>
+                    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Включить тёмную тему" title="Включить тёмную тему" aria-pressed="false">
+                        <svg class="theme-toggle-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="3.6"></circle>
+                            <path d="M12 2.5v2M12 19.5v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2.5 12h2m15 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+                        </svg>
+                        <svg class="theme-toggle-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20.1 15.3A8.4 8.4 0 0 1 8.7 3.9 8.7 8.7 0 1 0 20.1 15.3Z"></path>
+                            <path d="m16.8 4.1.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1968,148 +2128,126 @@ ADD RAX, 5</textarea>
             { name: "Pycdc", desc: "Программа для превращения скомпилированного байткода Python обратно в .py.", cat: "Python", link: "https://github.com/zrax/pycdc" }
         ];
 
-        let activeTag = "ALL";
-        const ARTICLE_FEEDBACK_STORAGE_KEY = "reversecore-article-feedback-v1";
-        let activeArticleId = null;
-        let articleFeedback = (() => {
-            try {
-                const stored = JSON.parse(localStorage.getItem(ARTICLE_FEEDBACK_STORAGE_KEY) || "{}");
-                return stored && typeof stored === "object" && !Array.isArray(stored) ? stored : {};
-            } catch {
-                return {};
-            }
-        })();
+        const ratingsStorageKey = "reversecore-article-ratings-v1";
 
-        function getArticleFeedback(articleId) {
-            const stored = articleFeedback[articleId];
-            const rating = Number.isInteger(stored?.rating) && stored.rating >= 1 && stored.rating <= 5 ? stored.rating : 0;
-            const vote = stored?.vote === "clear" || stored?.vote === "simpler" ? stored.vote : "";
-            return { rating, vote };
+        function loadArticleRatings() {
+            try {
+                const stored = JSON.parse(localStorage.getItem(ratingsStorageKey) || "{}");
+                if (stored && typeof stored === "object" && !Array.isArray(stored)) {
+                    return Object.fromEntries(Object.entries(stored).filter(([id, score]) =>
+                        articlesData.some(article => article.id === id) && Number.isInteger(score) && score >= 1 && score <= 5
+                    ));
+                }
+            } catch {}
+            return {};
         }
 
-        function saveArticleFeedback() {
-            try {
-                localStorage.setItem(ARTICLE_FEEDBACK_STORAGE_KEY, JSON.stringify(articleFeedback));
-                return true;
-            } catch {
-                return false;
-            }
+        let articleRatings = loadArticleRatings();
+
+        function getArticleRating(articleId) {
+            const score = articleRatings[articleId] || 0;
+            return { score, count: score ? 1 : 0 };
         }
 
-        function ratingWidgetMarkup(articleId, placement) {
-            const rating = getArticleFeedback(articleId).rating;
-            const emptyLabel = placement === "card" ? "Поставьте оценку" : "Оцените материал";
-            const stars = Array.from({ length: 5 }, (_, index) => {
+        function renderRatingStars(articleTitle) {
+            const safeTitle = articleTitle.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
+            const buttons = Array.from({ length: 5 }, (_, index) => {
                 const score = index + 1;
-                return `
-                    <button type="button" class="rating-star ${score <= rating ? "is-active" : ""}" data-rating-value="${score}" onclick="rateArticle('${articleId}', ${score})" aria-label="Оценить статью на ${score} из 5" aria-pressed="${score === rating}" title="${score} из 5">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.93 6.08 6.71.98-4.82 4.7 1.14 6.64L12 17.26l-5.96 3.14 1.14-6.64-4.82-4.7 6.71-.98L12 2Z"></path></svg>
-                    </button>
-                `;
+                return `<button type="button" class="rating-star-button" role="radio" aria-checked="false" tabindex="${score === 1 ? 0 : -1}" aria-label="${score} из 5" title="${score} из 5" data-rating-score="${score}">★</button>`;
             }).join("");
+            return `<div class="rating-stars" role="radiogroup" aria-label="Оцените статью: ${safeTitle}">${buttons}</div>`;
+        }
 
-            return `
-                <div class="article-rating-widget" data-rating-widget data-article-id="${articleId}" data-placement="${placement}">
-                    <div class="article-stars" role="group" aria-label="Рейтинг статьи от 1 до 5">
-                        ${stars}
-                    </div>
-                    <span class="article-rating-note" data-rating-note aria-live="polite">${rating ? `Ваша оценка: ${rating}/5` : emptyLabel}</span>
+        function renderRatingWidget(articleId, variant = "compact") {
+            const article = articlesData.find(item => item.id === articleId);
+            if (!article) return "";
+
+            const summary = `
+                <div class="rating-widget-summary" aria-live="polite">
+                    <strong class="rating-average" data-rating-average>—</strong>
+                    <span class="rating-out-of">/ 5</span>
+                    <span class="rating-count" data-rating-count>Пока нет голосов</span>
                 </div>
             `;
-        }
+            const stars = renderRatingStars(article.title);
 
-        function updateRatingWidgets(articleId) {
-            const rating = getArticleFeedback(articleId).rating;
-            document.querySelectorAll("[data-rating-widget]").forEach(widget => {
-                if (widget.dataset.articleId !== articleId) return;
-                widget.querySelectorAll("[data-rating-value]").forEach(button => {
-                    const score = Number(button.dataset.ratingValue);
-                    button.classList.toggle("is-active", score <= rating);
-                    button.setAttribute("aria-pressed", String(score === rating));
-                });
-                const note = widget.querySelector("[data-rating-note]");
-                if (note) {
-                    note.textContent = rating
-                        ? `Ваша оценка: ${rating}/5`
-                        : widget.dataset.placement === "card" ? "Поставьте оценку" : "Оцените материал";
-                }
-            });
-        }
-
-        function renderArticleFeedbackPanel(articleId) {
-            const feedback = getArticleFeedback(articleId);
-            const voteLabels = { clear: "всё понятно", simpler: "нужно проще" };
-            const voteStatus = feedback.vote
-                ? `Ваш голос: «${voteLabels[feedback.vote]}». Сохранён в этом браузере.`
-                : "Выберите один вариант. Голос можно изменить позже.";
+            if (variant === "modal") {
+                return `
+                    <section class="rating-widget rating-widget-modal" data-rating-widget data-article-id="${articleId}" aria-label="Рейтинг статьи">
+                        <div class="rating-widget-header">
+                            <div class="rating-widget-copy">
+                                <span class="rating-widget-kicker">ТВОЙ ГОЛОС</span>
+                                <h3 class="rating-widget-title">Насколько полезна статья?</h3>
+                                <p class="rating-widget-description">Поставь от одной до пяти звёзд. Это поможет сделать гайды понятнее.</p>
+                            </div>
+                            ${summary}
+                        </div>
+                        <div class="rating-widget-actions">
+                            ${stars}
+                            <p class="rating-widget-status" data-rating-status role="status" aria-live="polite">Нажмите на звезду, чтобы поставить оценку.</p>
+                        </div>
+                        <p class="rating-local-note">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l2.5 2.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>
+                            Голос учитывается один раз в этом браузере. Его можно изменить, выбрав другую звезду.
+                        </p>
+                    </section>
+                `;
+            }
 
             return `
-                <section class="article-feedback-panel" aria-label="Рейтинг и голосование">
-                    <div class="article-feedback-intro">
-                        <span class="article-feedback-kicker">Обратная связь</span>
-                        <h3 class="article-feedback-title">Помогите сделать разборы понятнее</h3>
-                        <p class="article-feedback-description">Оцените материал и отметьте, насколько ясным было объяснение.</p>
+                <section class="rating-widget rating-widget-compact" data-rating-widget data-article-id="${articleId}" aria-label="Рейтинг статьи">
+                    <div class="rating-widget-copy">
+                        <span class="rating-widget-kicker">РЕЙТИНГ</span>
+                        ${summary}
                     </div>
-                    <div class="article-feedback-rating">
-                        <div class="article-feedback-question">
-                            <span class="article-rating-label">Рейтинг статьи</span>
-                            <span class="article-feedback-hint">1 — слабо · 5 — отлично</span>
-                        </div>
-                        ${ratingWidgetMarkup(articleId, "modal")}
-                    </div>
-                    <div class="article-feedback-voting">
-                        <div class="article-feedback-question">
-                            <span class="article-rating-label">Было понятно?</span>
-                            <span class="article-feedback-hint">Один голос</span>
-                        </div>
-                        <div class="article-vote-row">
-                            <button type="button" class="article-vote-button ${feedback.vote === "clear" ? "is-selected" : ""}" data-feedback-vote="clear" onclick="voteArticle('clear')" aria-pressed="${feedback.vote === "clear"}">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12 4 4L19 6"></path></svg>
-                                <span>Да, всё понятно</span>
-                            </button>
-                            <button type="button" class="article-vote-button ${feedback.vote === "simpler" ? "is-selected" : ""}" data-feedback-vote="simpler" onclick="voteArticle('simpler')" aria-pressed="${feedback.vote === "simpler"}">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v14H6.5A2.5 2.5 0 0 0 4 19.5v-14Zm0 0v14A2.5 2.5 0 0 1 6.5 17H20"></path></svg>
-                                <span>Нужно объяснить проще</span>
-                            </button>
-                        </div>
-                        <p id="article-vote-status" class="article-vote-status" aria-live="polite">${voteStatus}</p>
-                    </div>
-                    <p class="article-feedback-footnote">Ваш ответ хранится только в этом браузере и не виден другим посетителям.</p>
+                    ${stars}
+                    <p class="rating-widget-status sr-only" data-rating-status role="status" aria-live="polite">Оцените статью от 1 до 5.</p>
                 </section>
             `;
         }
 
-        function rateArticle(articleId, score) {
-            if (!articlesData.some(article => article.id === articleId)) return;
-            const rating = Number(score);
-            if (!Number.isInteger(rating) || rating < 1 || rating > 5) return;
+        function updateRatingWidget(widget) {
+            const articleId = widget.dataset.articleId;
+            const { score, count } = getArticleRating(articleId);
+            const average = widget.querySelector("[data-rating-average]");
+            const countLabel = widget.querySelector("[data-rating-count]");
+            const status = widget.querySelector("[data-rating-status]");
 
-            articleFeedback[articleId] = { ...getArticleFeedback(articleId), rating };
-            const saved = saveArticleFeedback();
-            updateRatingWidgets(articleId);
-            showToast(saved ? "Спасибо за оценку!" : "Оценка сохранена до закрытия страницы.");
-        }
+            if (average) average.textContent = count ? score.toFixed(1) : "—";
+            if (countLabel) countLabel.textContent = count ? "1 голос на этом устройстве" : "Пока нет голосов";
+            if (status) status.textContent = score
+                ? `Ваша оценка: ${score} из 5. Нажмите другую звезду, чтобы изменить её.`
+                : "Нажмите на звезду, чтобы поставить оценку.";
 
-        function voteArticle(vote) {
-            if (!activeArticleId || (vote !== "clear" && vote !== "simpler")) return;
-
-            articleFeedback[activeArticleId] = { ...getArticleFeedback(activeArticleId), vote };
-            const saved = saveArticleFeedback();
-            document.querySelectorAll("[data-feedback-vote]").forEach(button => {
-                const selected = button.dataset.feedbackVote === vote;
-                button.classList.toggle("is-selected", selected);
-                button.setAttribute("aria-pressed", String(selected));
+            widget.querySelectorAll(".rating-star-button").forEach(button => {
+                const value = Number(button.dataset.ratingScore);
+                button.classList.toggle("is-filled", score > 0 && value <= score);
+                button.setAttribute("aria-checked", String(value === score));
+                button.tabIndex = value === (score || 1) ? 0 : -1;
             });
-
-            const status = document.getElementById("article-vote-status");
-            const label = vote === "clear" ? "всё понятно" : "нужно проще";
-            if (status) {
-                status.textContent = saved
-                    ? `Ваш голос «${label}» сохранён в этом браузере.`
-                    : `Ваш голос «${label}» сохранён до закрытия страницы.`;
-            }
-            showToast(saved ? "Голос учтён. Спасибо!" : "Голос отмечен до закрытия страницы.");
         }
+
+        function updateRatingWidgets(articleId) {
+            document.querySelectorAll("[data-rating-widget]").forEach(widget => {
+                if (widget.dataset.articleId === articleId) updateRatingWidget(widget);
+            });
+        }
+
+        function submitArticleRating(articleId, score) {
+            if (!articlesData.some(article => article.id === articleId) || !Number.isInteger(score) || score < 1 || score > 5) return;
+
+            articleRatings[articleId] = score;
+            let saved = false;
+            try {
+                localStorage.setItem(ratingsStorageKey, JSON.stringify(articleRatings));
+                saved = true;
+            } catch {}
+
+            updateRatingWidgets(articleId);
+            showToast(saved ? `Оценка ${score} из 5 сохранена` : `Оценка ${score} из 5 принята до закрытия страницы`);
+        }
+
+        let activeTag = "ALL";
 
         function applyTheme(theme, animate = false) {
             const root = document.documentElement;
@@ -2181,14 +2319,10 @@ ADD RAX, 5</textarea>
                         </div>
                         <h3 class="text-base text-slate-900 leading-snug">${art.title}</h3>
                         <p class="text-xs text-slate-600 leading-relaxed">${art.snippet}</p>
+                        ${renderRatingWidget(art.id)}
                     </div>
 
-                    <div class="article-card-rating">
-                        <span class="article-rating-label">Ваша оценка</span>
-                        ${ratingWidgetMarkup(art.id, "card")}
-                    </div>
-
-                    <div class="pt-4">
+                    <div class="pt-6">
                         <button onclick="openArticleModal('${art.id}')" class="hover-scale w-full py-2.5 bg-slate-100 hover:bg-[#00d0ff] text-slate-900 rounded-xl text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2">
                             <span>Открыть статью</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -2196,6 +2330,8 @@ ADD RAX, 5</textarea>
                     </div>
                 </div>
             `).join('');
+
+            grid.querySelectorAll('[data-rating-widget]').forEach(updateRatingWidget);
         }
 
         function setArticleTag(tag) {
@@ -2217,17 +2353,16 @@ ADD RAX, 5</textarea>
             const art = articlesData.find(a => a.id === id);
             if (!art) return;
 
-            activeArticleId = id;
             document.getElementById('modal-title').innerText = art.title;
             document.getElementById('modal-tags').innerHTML = art.tags.map(t => `<span class="text-[10px] bg-[#00d0ff]/20 text-slate-900 px-2 py-0.5 rounded uppercase">${t}</span>`).join('');
-            document.getElementById('modal-body').innerHTML = art.content + renderArticleFeedbackPanel(id);
+            document.getElementById('modal-body').innerHTML = `${art.content}${renderRatingWidget(art.id, "modal")}`;
 
             document.getElementById('article-modal').classList.remove('hidden');
+            updateRatingWidgets(id);
         }
 
         function closeModal() {
             document.getElementById('article-modal').classList.add('hidden');
-            activeArticleId = null;
         }
 
         function renderTools() {
@@ -2440,6 +2575,39 @@ ADD RAX, 5</textarea>
         }
 
         document.addEventListener('click', event => {
+            const button = event.target.closest?.('.rating-star-button');
+            const widget = button?.closest('[data-rating-widget]');
+            if (button && widget) {
+                submitArticleRating(widget.dataset.articleId, Number(button.dataset.ratingScore));
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            const button = event.target.closest?.('.rating-star-button');
+            if (!button || !['ArrowRight', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+
+            const group = button.closest('.rating-stars');
+            const widget = button.closest('[data-rating-widget]');
+            const buttons = Array.from(group?.querySelectorAll('.rating-star-button') || []);
+            const index = buttons.indexOf(button);
+            if (!widget || index < 0) return;
+
+            const nextIndex = event.key === 'Home' ? 0
+                : event.key === 'End' ? buttons.length - 1
+                : (index + (event.key === 'ArrowRight' || event.key === 'ArrowUp' ? 1 : -1) + buttons.length) % buttons.length;
+            const nextButton = buttons[nextIndex];
+            nextButton.focus();
+            submitArticleRating(widget.dataset.articleId, Number(nextButton.dataset.ratingScore));
+            event.preventDefault();
+        });
+
+        window.addEventListener('storage', event => {
+            if (event.key !== ratingsStorageKey && event.key !== null) return;
+            articleRatings = loadArticleRatings();
+            document.querySelectorAll('[data-rating-widget]').forEach(updateRatingWidget);
+        });
+
+        document.addEventListener('click', event => {
             const menuWrap = document.querySelector('.details-menu-wrap');
             if (menuWrap && !menuWrap.contains(event.target)) setDetailsMenuOpen(false);
             if (event.target.closest('#details-menu a')) setDetailsMenuOpen(false);
@@ -2463,6 +2631,202 @@ ADD RAX, 5</textarea>
                 }
             }
         });
+
+        const ambientButton = document.getElementById('ambient-toggle');
+        const ambientChords = [
+            [55, 82.41, 110, 130.81, 164.81],
+            [43.65, 87.31, 110, 130.81, 174.61],
+            [65.41, 98, 110, 130.81, 146.83],
+            [49, 73.42, 98, 123.47, 146.83]
+        ];
+        let activeAmbient = null;
+
+        function trackAmbientSource(audio, source) {
+            audio.sources.add(source);
+            source.onended = () => audio.sources.delete(source);
+        }
+
+        function createAmbientChord(audio, notes, chordIndex) {
+            const context = audio.context;
+            const now = context.currentTime;
+            const chordGain = context.createGain();
+            const filter = context.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(620 + chordIndex * 75, now);
+            filter.Q.value = 0.55;
+            chordGain.gain.setValueAtTime(0, now);
+            chordGain.gain.linearRampToValueAtTime(0.62, now + 4.5);
+            chordGain.connect(filter);
+            filter.connect(audio.mixer);
+
+            const sources = [];
+            notes.forEach((frequency, noteIndex) => {
+                const voice = context.createGain();
+                voice.gain.value = noteIndex === 0 ? 0.05 : 0.03;
+                voice.connect(chordGain);
+
+                [-5, 5].forEach(detune => {
+                    const oscillator = context.createOscillator();
+                    oscillator.type = noteIndex === 0 ? 'sine' : 'triangle';
+                    oscillator.frequency.setValueAtTime(frequency, now);
+                    oscillator.detune.value = detune;
+                    oscillator.connect(voice);
+                    oscillator.start();
+                    trackAmbientSource(audio, oscillator);
+                    sources.push(oscillator);
+                });
+            });
+
+            return { gain: chordGain, filter, sources };
+        }
+
+        function addAmbientTexture(audio) {
+            const context = audio.context;
+            const drone = context.createOscillator();
+            const droneGain = context.createGain();
+            drone.type = 'sine';
+            drone.frequency.value = 55;
+            droneGain.gain.value = 0.028;
+            drone.connect(droneGain);
+            droneGain.connect(audio.mixer);
+            drone.start();
+            trackAmbientSource(audio, drone);
+
+            const noiseBuffer = context.createBuffer(1, context.sampleRate * 2, context.sampleRate);
+            const noiseData = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < noiseData.length; i++) noiseData[i] = Math.random() * 2 - 1;
+
+            const noise = context.createBufferSource();
+            const noiseFilter = context.createBiquadFilter();
+            const noiseGain = context.createGain();
+            noise.buffer = noiseBuffer;
+            noise.loop = true;
+            noiseFilter.type = 'lowpass';
+            noiseFilter.frequency.value = 1350;
+            noiseFilter.Q.value = 0.25;
+            noiseGain.gain.value = 0.012;
+            noise.connect(noiseFilter);
+            noiseFilter.connect(noiseGain);
+            noiseGain.connect(audio.mixer);
+            noise.start();
+            trackAmbientSource(audio, noise);
+        }
+
+        function setAmbientButtonState(isPlaying) {
+            const action = isPlaying ? 'Выключить киберпанк-эмбиент' : 'Включить киберпанк-эмбиент';
+            ambientButton.classList.toggle('is-playing', isPlaying);
+            ambientButton.setAttribute('aria-pressed', String(isPlaying));
+            ambientButton.setAttribute('aria-label', action);
+            ambientButton.setAttribute('title', action);
+        }
+
+        function stopAmbientLayer(layer) {
+            layer.sources.forEach(source => {
+                try { source.stop(); } catch {}
+            });
+            layer.gain.disconnect();
+            layer.filter.disconnect();
+        }
+
+        function stopCyberAmbient() {
+            const audio = activeAmbient;
+            if (!audio) return;
+
+            activeAmbient = null;
+            window.clearInterval(audio.chordTimer);
+            audio.layerStopTimers.forEach(timer => window.clearTimeout(timer));
+            audio.layerStopTimers.clear();
+
+            const now = audio.context.currentTime;
+            audio.master.gain.cancelScheduledValues(now);
+            audio.master.gain.setValueAtTime(audio.master.gain.value, now);
+            audio.master.gain.linearRampToValueAtTime(0, now + 1.2);
+            setAmbientButtonState(false);
+
+            window.setTimeout(() => {
+                audio.sources.forEach(source => {
+                    try { source.stop(); } catch {}
+                });
+                audio.context.close().catch(() => {});
+            }, 1300);
+        }
+
+        async function toggleCyberAmbient() {
+            if (activeAmbient) {
+                stopCyberAmbient();
+                return;
+            }
+
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) {
+                showToast('Этот браузер не поддерживает фоновый звук');
+                return;
+            }
+
+            ambientButton.disabled = true;
+            const context = new AudioContextClass();
+            const master = context.createGain();
+            const mixer = context.createGain();
+            master.gain.value = 0;
+            mixer.gain.value = 1;
+            mixer.connect(master);
+            master.connect(context.destination);
+
+            const audio = {
+                context,
+                master,
+                mixer,
+                sources: new Set(),
+                layerStopTimers: new Set(),
+                chordTimer: null,
+                currentLayer: null,
+                chordIndex: 0
+            };
+            activeAmbient = audio;
+
+            try {
+                await context.resume();
+                addAmbientTexture(audio);
+                audio.currentLayer = createAmbientChord(audio, ambientChords[0], 0);
+                const now = context.currentTime;
+                master.gain.setValueAtTime(0, now);
+                master.gain.linearRampToValueAtTime(0.34, now + 2.2);
+
+                audio.chordTimer = window.setInterval(() => {
+                    if (activeAmbient !== audio) return;
+                    audio.chordIndex = (audio.chordIndex + 1) % ambientChords.length;
+                    const nextIndex = audio.chordIndex;
+                    const previousLayer = audio.currentLayer;
+                    const nextLayer = createAmbientChord(audio, ambientChords[nextIndex], nextIndex);
+                    const transitionAt = context.currentTime;
+                    previousLayer.gain.cancelScheduledValues(transitionAt);
+                    previousLayer.gain.setValueAtTime(0.62, transitionAt);
+                    previousLayer.gain.linearRampToValueAtTime(0, transitionAt + 4.5);
+                    audio.currentLayer = nextLayer;
+
+                    let cleanupTimer;
+                    cleanupTimer = window.setTimeout(() => {
+                        audio.layerStopTimers.delete(cleanupTimer);
+                        stopAmbientLayer(previousLayer);
+                    }, 4700);
+                    audio.layerStopTimers.add(cleanupTimer);
+                }, 15000);
+
+                setAmbientButtonState(true);
+            } catch {
+                if (activeAmbient === audio) activeAmbient = null;
+                audio.sources.forEach(source => {
+                    try { source.stop(); } catch {}
+                });
+                context.close().catch(() => {});
+                setAmbientButtonState(false);
+                showToast('Не удалось включить фоновый звук');
+            } finally {
+                ambientButton.disabled = false;
+            }
+        }
+
+        ambientButton.addEventListener('click', toggleCyberAmbient);
 
         renderArticles();
         renderTools();
