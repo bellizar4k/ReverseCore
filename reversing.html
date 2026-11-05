@@ -3,24 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Просто ReverseCore - По простому</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="REVERSE//CORE — понятный портал о реверс-инжиниринге, инструментах и практике для начинающих.">
+    <meta name="theme-color" content="#f5fbfd">
+    <title>REVERSE//CORE — реверс-инжиниринг понятным языком</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
         * {
-            font-family: 'Montserrat', sans-serif !important;
-            font-weight: 700 !important;
-            -webkit-tap-highlight-color: transparent !important;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: #ffffff;
             color: #0f172a;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", sans-serif;
+            font-weight: 400;
+            font-synthesis: none;
             overflow-x: hidden;
             position: relative;
+        }
+
+        h1, h2, h3, .header-brand-name, .video-heading, .rating-widget-title {
+            font-weight: 700;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+        }
+
+        button {
+            font-weight: 600;
         }
 
         input, textarea, button, select, a {
@@ -45,10 +60,9 @@
 
         .hover-scale {
             transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
-            will-change: transform;
         }
         .hover-scale:hover {
-            transform: scale(1.04);
+            transform: scale(1.025);
         }
 
         .nav-tab.active {
@@ -168,12 +182,10 @@
             font-size: 11px;
             line-height: 1;
             text-decoration: none;
-            background: linear-gradient(135deg, #00d0ff, #ffffff, #70e4ff, #00d0ff);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, #86eaff, #ffffff 52%, #c8f5ff);
             box-shadow: 0 10px 25px -5px rgba(0, 208, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.05);
-            animation: gradientShift 4s ease infinite;
             cursor: pointer;
-            transition: opacity 0.3s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+            transition: opacity 0.3s ease, transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.38s ease;
         }
 
         .utility-action:hover,
@@ -187,9 +199,9 @@
         }
 
         .details-menu-wrap {
-            position: fixed;
-            right: 244px;
-            bottom: 24px;
+            position: relative;
+            width: 100%;
+            margin: 24px auto 0;
             z-index: 1000;
             display: flex;
             flex-direction: column;
@@ -197,13 +209,12 @@
         }
 
         .details-menu {
-            position: absolute;
-            right: 0;
-            bottom: calc(100% + 12px);
+            position: static;
             z-index: 1050;
             display: grid;
             gap: 4px;
             width: min(248px, calc(100vw - 32px));
+            margin: 0 0 12px auto;
             padding: 8px;
             border: 1px solid #cbd5e1;
             border-radius: 16px;
@@ -308,12 +319,35 @@
 
         @media (max-width: 640px) {
             .details-menu-wrap {
-                right: 16px;
-                bottom: 76px;
+                position: relative;
+                right: auto;
+                bottom: auto;
+                width: 100%;
+                margin: 24px auto 0;
+                align-items: center;
+            }
+
+            .btn-back-to-top {
+                width: 48px;
+                min-width: 48px;
+                height: 48px;
+                gap: 0;
+                padding: 0;
+                border-radius: 50%;
+            }
+
+            .btn-back-to-top > span {
+                display: none;
+            }
+
+            .details-menu {
+                position: static;
+                width: min(248px, calc(100vw - 32px));
+                margin: 0 auto 12px;
             }
 
             footer.footer-with-actions {
-                padding-bottom: 144px;
+                padding-bottom: 96px;
             }
 
             .btn-back-to-top {
@@ -345,7 +379,7 @@
             height: 240px;
             border-radius: 50%;
             background: rgba(0, 208, 255, 0.16);
-            filter: blur(70px);
+            filter: none;
             pointer-events: none;
         }
 
@@ -623,8 +657,8 @@
 
         .glass-header {
             background: rgba(248, 252, 255, 0.1);
-            -webkit-backdrop-filter: blur(18px) saturate(185%) contrast(106%);
-            backdrop-filter: blur(18px) saturate(185%) contrast(106%);
+            -webkit-backdrop-filter: blur(12px) saturate(175%);
+            backdrop-filter: blur(12px) saturate(175%);
             border-bottom-color: rgba(255, 255, 255, 0.48);
             box-shadow: 0 12px 40px rgba(15, 23, 42, 0.055), 0 1px 0 rgba(255, 255, 255, 0.72) inset;
         }
@@ -634,8 +668,7 @@
                 radial-gradient(ellipse at 18% -58%, rgba(255, 255, 255, 0.46), transparent 48%),
                 radial-gradient(ellipse at 74% 0%, rgba(0, 208, 255, 0.075), transparent 32%),
                 linear-gradient(105deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.025) 34%, rgba(255, 255, 255, 0.065) 51%, rgba(0, 208, 255, 0.035) 72%, rgba(255, 255, 255, 0.08));
-            background-size: 100% 100%, 100% 100%, 220% 100%;
-            animation: glassFlow 18s ease-in-out infinite alternate;
+            background-size: 100% 100%, 100% 100%, 100% 100%;
         }
 
         .glass-header::after {
@@ -651,8 +684,8 @@
         .glass-header .header-logo-mark,
         .glass-header .header-audience-pill {
             background: rgba(255, 255, 255, 0.27);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(10px) saturate(165%);
+            backdrop-filter: blur(10px) saturate(165%);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 8px 22px rgba(15, 23, 42, 0.045);
         }
 
@@ -667,6 +700,8 @@
         .glass-header .mobile-nav {
             background: rgba(248, 252, 255, 0.11);
             border-color: rgba(255, 255, 255, 0.38);
+            -webkit-backdrop-filter: blur(10px) saturate(165%);
+            backdrop-filter: blur(10px) saturate(165%);
         }
 
         .glass-header .mobile-nav > button {
@@ -691,8 +726,8 @@
             color: #f0a52f;
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.56), rgba(236, 247, 252, 0.18));
             box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07), 0 1px 0 rgba(255, 255, 255, 0.82) inset;
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(10px) saturate(165%);
+            backdrop-filter: blur(10px) saturate(165%);
             cursor: pointer;
             transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
@@ -1060,29 +1095,6 @@
             background: #00a9d1;
         }
 
-        html.theme-transitioning,
-        html.theme-transitioning * {
-            transition-property: background-color, background-image, border-color, color, box-shadow, fill, stroke, backdrop-filter, opacity, transform !important;
-            transition-duration: 0.52s !important;
-            transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
-        }
-
-        html.theme-transitioning::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            pointer-events: none;
-            background: radial-gradient(circle at var(--theme-x, 50%) var(--theme-y, 50%), rgba(0, 208, 255, 0.2), rgba(0, 208, 255, 0.045) 22%, transparent 64%);
-            clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 50%));
-            animation: themeRipple 0.72s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        }
-
-        @keyframes themeRipple {
-            0% { clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 50%)); opacity: 0.85; }
-            100% { clip-path: circle(150vmax at var(--theme-x, 50%) var(--theme-y, 50%)); opacity: 0; }
-        }
-
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
             .glass-header {
                 background: rgba(255, 255, 255, 0.86);
@@ -1146,11 +1158,8 @@
 
             .theme-toggle,
             .theme-toggle::after,
-            .theme-toggle-icon,
-            html.theme-transitioning,
-            html.theme-transitioning * {
+            .theme-toggle-icon {
                 animation: none !important;
-                transition-duration: 0.01ms !important;
             }
         }
 
@@ -1575,6 +1584,681 @@
                 transition: none;
             }
         }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        #articles-grid p,
+        .tab-content p {
+            font-weight: 400;
+        }
+
+        .rating-widget-compact {
+            gap: 9px 13px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            backdrop-filter: blur(10px) saturate(150%);
+        }
+
+        .rating-widget-compact .rating-widget-kicker {
+            font-size: 9px;
+        }
+
+        .rating-widget-compact .rating-average {
+            font-size: 18px;
+        }
+
+        .rating-widget-compact .rating-count {
+            font-size: 10px;
+        }
+
+        .hover-scale {
+            transition-duration: 0.34s;
+        }
+
+        .nav-tab,
+        .rating-star-button,
+        .details-menu-link,
+        .video-card-link {
+            transition-duration: 0.28s;
+        }
+
+        .details-menu:not([hidden]) {
+            animation-duration: 0.26s;
+        }
+
+        pre {
+            border: 1px solid rgba(96, 129, 148, 0.2) !important;
+            border-radius: 14px !important;
+            color: #244253 !important;
+            background: linear-gradient(145deg, #f6fafc, #eaf2f6) !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 8px 22px rgba(31, 66, 84, 0.06);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+            font-size: clamp(0.75rem, 2.6vw, 0.875rem) !important;
+            font-weight: 400 !important;
+            line-height: 1.65 !important;
+            text-shadow: none !important;
+        }
+
+        pre code {
+            color: inherit !important;
+            font-family: inherit !important;
+            font-weight: 400 !important;
+        }
+
+        .tab-content p code {
+            padding: 0.1em 0.34em;
+            border: 1px solid rgba(96, 129, 148, 0.16);
+            border-radius: 6px;
+            color: #146c85;
+            background: #edf6f9;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 0.92em;
+            font-weight: 500;
+        }
+
+        html[data-theme="dark"] pre {
+            border-color: rgba(139, 177, 198, 0.2) !important;
+            color: #d8eaf2 !important;
+            background: linear-gradient(145deg, #1a2b3a, #152332) !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 8px 22px rgba(0, 0, 0, 0.16);
+        }
+
+        html[data-theme="dark"] .tab-content p code {
+            border-color: rgba(139, 177, 198, 0.18);
+            color: #8de8f5;
+            background: #172b39;
+        }
+
+        .route-finder {
+            display: grid;
+            grid-template-columns: minmax(210px, 0.72fr) minmax(0, 1.55fr);
+            gap: 18px 28px;
+            align-items: start;
+            margin-bottom: 22px;
+            padding: clamp(18px, 2.8vw, 28px);
+            border: 1px solid rgba(0, 166, 198, 0.2);
+            border-radius: 24px;
+            background:
+                radial-gradient(ellipse at 100% 0%, rgba(0, 208, 255, 0.11), transparent 42%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(242, 250, 253, 0.68));
+            box-shadow: 0 20px 46px -36px rgba(15, 23, 42, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+            -webkit-backdrop-filter: blur(12px) saturate(155%);
+            backdrop-filter: blur(12px) saturate(155%);
+        }
+
+        .route-finder-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0284a8;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .route-finder-kicker::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00d0ff;
+            box-shadow: 0 0 10px rgba(0, 208, 255, 0.55);
+        }
+
+        .route-finder-title {
+            margin: 11px 0 8px;
+            color: #0f172a;
+            font-size: clamp(22px, 2.4vw, 30px);
+            letter-spacing: -0.045em;
+            line-height: 1.1;
+        }
+
+        .route-finder-copy p {
+            max-width: 300px;
+            margin: 0;
+            color: #64748b;
+            font-size: 11px;
+            line-height: 1.65;
+        }
+
+        .route-form {
+            display: grid;
+            gap: 14px;
+        }
+
+        .route-question-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(170px, 0.75fr);
+            gap: 14px;
+        }
+
+        .route-question {
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .route-question legend {
+            margin-bottom: 8px;
+            color: #334155;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .route-options {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 7px;
+        }
+
+        .route-options-level {
+            grid-template-columns: 1fr;
+        }
+
+        .route-option {
+            position: relative;
+            min-width: 0;
+            min-height: 38px;
+            cursor: pointer;
+        }
+
+        .route-option input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            clip-path: inset(50%);
+        }
+
+        .route-option span {
+            display: flex;
+            min-height: 38px;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 9px;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 12px;
+            color: #526273;
+            background: rgba(255, 255, 255, 0.54);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            font-size: 9px;
+            line-height: 1.3;
+            text-align: center;
+            transition: color 0.28s ease, background-color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+        }
+
+        .route-option input:checked + span {
+            border-color: rgba(0, 166, 198, 0.55);
+            color: #075b70;
+            background: rgba(0, 208, 255, 0.12);
+            box-shadow: 0 0 0 2px rgba(0, 208, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+        }
+
+        .route-option input:focus-visible + span {
+            outline: 2px solid #00a9d1;
+            outline-offset: 2px;
+        }
+
+        .route-option:hover span {
+            transform: translateY(-1px);
+        }
+
+        .route-submit,
+        .route-action {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 0 16px;
+            border: 1px solid rgba(0, 166, 198, 0.25);
+            border-radius: 13px;
+            color: #073b4a;
+            background: linear-gradient(135deg, #a3eeff, #dcf9ff 64%, #fff);
+            box-shadow: 0 8px 18px rgba(0, 166, 198, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.34s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.34s ease;
+        }
+
+        .route-submit:hover,
+        .route-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 166, 198, 0.19), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .route-privacy {
+            margin: -7px 0 0;
+            color: #778596;
+            font-size: 9px;
+            line-height: 1.4;
+        }
+
+        .route-result {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 15px 16px;
+            border: 1px solid rgba(0, 166, 198, 0.2);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.56);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+            animation: detailsMenuIn 0.34s ease-out;
+        }
+
+        .route-result-copy {
+            min-width: 0;
+        }
+
+        .route-result-kicker {
+            color: #0284a8;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .route-result h3 {
+            margin: 5px 0 4px;
+            color: #0f172a;
+            font-size: 15px;
+        }
+
+        .route-result p {
+            margin: 0;
+            color: #64748b;
+            font-size: 10px;
+            line-height: 1.55;
+        }
+
+        html[data-theme="dark"] .route-finder {
+            border-color: rgba(0, 208, 255, 0.19);
+            background:
+                radial-gradient(ellipse at 100% 0%, rgba(0, 208, 255, 0.11), transparent 42%),
+                linear-gradient(135deg, rgba(18, 34, 50, 0.88), rgba(12, 27, 40, 0.84));
+            box-shadow: 0 20px 46px -36px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        html[data-theme="dark"] .route-finder-title,
+        html[data-theme="dark"] .route-result h3 {
+            color: #e6edf5;
+        }
+
+        html[data-theme="dark"] .route-finder-copy p,
+        html[data-theme="dark"] .route-question legend,
+        html[data-theme="dark"] .route-result p {
+            color: #9eacbc;
+        }
+
+        html[data-theme="dark"] .route-option span,
+        html[data-theme="dark"] .route-result {
+            border-color: rgba(148, 163, 184, 0.18);
+            color: #c4d2df;
+            background: rgba(7, 17, 29, 0.44);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+        }
+
+        html[data-theme="dark"] .route-option input:checked + span {
+            border-color: rgba(0, 208, 255, 0.48);
+            color: #8cecff;
+            background: rgba(0, 208, 255, 0.1);
+            box-shadow: 0 0 0 2px rgba(0, 208, 255, 0.06);
+        }
+
+        html[data-theme="dark"] .route-result-kicker,
+        html[data-theme="dark"] .route-finder-kicker {
+            color: #55d7ef;
+        }
+
+        html[data-theme="dark"] .route-submit,
+        html[data-theme="dark"] .route-action {
+            border-color: rgba(0, 208, 255, 0.22);
+            color: #dff8fc;
+            background: linear-gradient(135deg, #12627a, #153448 64%, #122a3b);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.19), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        html[data-theme="dark"] .route-privacy {
+            color: #8798aa;
+        }
+
+        .video-frame {
+            position: relative;
+            isolation: isolate;
+            background: linear-gradient(145deg, #e8f2f6, #d7e7ed);
+        }
+
+        .video-frame::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(5, 15, 26, 0.02), rgba(5, 15, 26, 0.3));
+        }
+
+        .video-poster {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-play-button {
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+            top: 50%;
+            display: inline-flex;
+            min-height: 44px;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 14px 7px 9px;
+            border: 1px solid rgba(255, 255, 255, 0.68);
+            border-radius: 999px;
+            color: #f6fcff;
+            background: rgba(6, 19, 32, 0.48);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+            -webkit-backdrop-filter: blur(10px) saturate(155%);
+            backdrop-filter: blur(10px) saturate(155%);
+            font-size: 10px;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: background-color 0.32s ease, transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.32s ease;
+        }
+
+        .video-play-button:hover {
+            background: rgba(6, 19, 32, 0.72);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.26);
+            transform: translate(-50%, -50%) scale(1.035);
+        }
+
+        .video-play-icon {
+            display: grid;
+            width: 30px;
+            height: 30px;
+            place-items: center;
+            padding-left: 2px;
+            border-radius: 50%;
+            color: #052433;
+            background: linear-gradient(145deg, #b5f2ff, #ffffff);
+            font-size: 12px;
+        }
+
+        .video-loading {
+            position: absolute;
+            z-index: 4;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #effbff;
+            background: rgba(7, 20, 31, 0.76);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .video-spinner {
+            width: 17px;
+            height: 17px;
+            flex: 0 0 auto;
+            border: 2px solid rgba(255, 255, 255, 0.32);
+            border-top-color: #68e4fa;
+            border-radius: 50%;
+            animation: videoSpin 0.9s linear infinite;
+        }
+
+        @keyframes videoSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            z-index: 3;
+            inset: 0;
+        }
+
+        .ambient-toggle {
+            display: inline-flex;
+            width: auto;
+            min-width: 130px;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 0 13px;
+            border-radius: 999px;
+            overflow: hidden;
+            -webkit-backdrop-filter: blur(10px) saturate(165%);
+            backdrop-filter: blur(10px) saturate(165%);
+            transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.38s ease, border-color 0.38s ease, box-shadow 0.38s ease;
+        }
+
+        .ambient-label {
+            position: relative;
+            z-index: 1;
+            color: #305366;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        html[data-theme="dark"] .ambient-label {
+            color: #d1e7f2;
+        }
+
+        .header-brand,
+        .rating-widget-compact,
+        .route-finder,
+        .video-card {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        @media (max-width: 760px) {
+            .route-finder {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .route-finder-copy p {
+                max-width: 520px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .ambient-toggle {
+                width: 42px;
+                min-width: 42px;
+                height: 42px;
+                padding: 0;
+            }
+
+            .ambient-label {
+                display: none;
+            }
+
+            .ambient-wave {
+                width: 18px;
+                height: 18px;
+            }
+
+            .route-question-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .route-options-level {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .route-option,
+            .route-option span {
+                min-height: 44px;
+            }
+
+            .route-result {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .route-action {
+                width: 100%;
+            }
+
+            .video-play-button {
+                min-height: 42px;
+                font-size: 9px;
+            }
+
+            .video-loading {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .route-options {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .route-options-level {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (pointer: coarse) {
+            .hover-scale:hover {
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .video-spinner {
+                animation: none;
+            }
+
+            .route-option span,
+            .route-submit,
+            .route-action,
+            .video-play-button {
+                transition-duration: 0.01ms;
+            }
+        }
+
+        .site-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: grid;
+            place-items: center;
+            color: #0f172a;
+            background: #ffffff;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.46s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.46s;
+        }
+
+        .site-loader[hidden] {
+            display: none !important;
+        }
+
+        .site-loader.is-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transition: opacity 0.46s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .site-loader.is-leaving {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .site-loader-wordmark {
+            display: flex;
+            align-items: baseline;
+            gap: 0.24em;
+            color: #0f172a;
+            font-size: clamp(22px, 5vw, 36px);
+            letter-spacing: 0.06em;
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .site-loader.is-visible .site-loader-wordmark {
+            animation: siteLoaderWordmarkIn 0.48s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .site-loader-accent,
+        .site-loader-dots {
+            color: #00a9d1;
+        }
+
+        .site-loader-dots {
+            min-width: 1.1em;
+            margin-left: -0.24em;
+        }
+
+        @keyframes siteLoaderWordmarkIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #tab-deobfuscation-content #xor-output,
+        #tab-deobfuscation-content #conv-output,
+        #tab-deobfuscation-content #junk-output {
+            border: 1px solid rgba(96, 129, 148, 0.2);
+            border-radius: 14px;
+            color: #244253 !important;
+            background: linear-gradient(145deg, #f6fafc, #eaf2f6) !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 8px 22px rgba(31, 66, 84, 0.06);
+        }
+
+        html[data-theme="dark"] #tab-deobfuscation-content #xor-output,
+        html[data-theme="dark"] #tab-deobfuscation-content #conv-output,
+        html[data-theme="dark"] #tab-deobfuscation-content #junk-output {
+            border-color: rgba(139, 177, 198, 0.2);
+            color: #d8eaf2 !important;
+            background: linear-gradient(145deg, #1a2b3a, #152332) !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 8px 22px rgba(0, 0, 0, 0.16);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .site-loader,
+            .site-loader.is-leaving {
+                transition: none;
+            }
+
+            .site-loader.is-visible .site-loader-wordmark {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        #site-font-override,
+        #site-font-override *,
+        #site-font-override *::before,
+        #site-font-override *::after,
+        #site-font-override *::placeholder {
+            font-family: "Montserrat", sans-serif !important;
+            font-weight: 700 !important;
+        }
     </style>
     <script>
         (() => {
@@ -1586,7 +2270,15 @@
         })();
     </script>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-[#00d0ff] selection:text-[#0f172a]">
+<body id="site-font-override" class="min-h-screen flex flex-col justify-between selection:bg-[#00d0ff] selection:text-[#0f172a]">
+
+    <div id="site-loader" class="site-loader is-visible" role="status" aria-live="polite" aria-label="Загрузка REVERSE CORE">
+        <div class="site-loader-wordmark">
+            <span>REVERSE</span>
+            <span class="site-loader-accent">CORE</span>
+            <span class="site-loader-dots" data-loader-dots aria-hidden="true">.</span>
+        </div>
+    </div>
 
     <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-xl border-2 border-[#00d0ff] shadow-2xl flex items-center space-x-3 translate-y-20 opacity-0 pointer-events-none">
         <svg class="w-5 h-5 text-[#00d0ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
@@ -1634,10 +2326,11 @@
                 </div>
 
                 <div class="header-controls flex items-center gap-2 shrink-0">
-                    <button id="ambient-toggle" type="button" class="ambient-toggle" aria-label="Включить киберпанк-эмбиент" aria-pressed="false" title="Включить киберпанк-эмбиент">
+                    <button id="ambient-toggle" type="button" class="ambient-toggle" aria-label="Включить фоновую атмосферу" aria-pressed="false" title="Включить фоновую атмосферу">
                         <svg class="ambient-wave" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12h3l2.1-5 3.8 10 3.1-7 1.5 2H21"></path>
                         </svg>
+                        <span class="ambient-label" data-ambient-label>Атмосфера: выкл.</span>
                         <span class="ambient-state" data-ambient-state aria-hidden="true"></span>
                     </button>
                     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Включить тёмную тему" title="Включить тёмную тему" aria-pressed="false">
@@ -1689,6 +2382,44 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
 
         <div id="tab-articles-content" class="tab-content block space-y-8">
+            <section class="route-finder" aria-labelledby="route-finder-title">
+                <div class="route-finder-copy">
+                    <span class="route-finder-kicker">ОПРОСНИК · 30 СЕКУНД</span>
+                    <h2 id="route-finder-title" class="route-finder-title">С чего начнём?</h2>
+                    <p>Выбери тему и свой уровень. Сайт соберёт понятный следующий шаг из уже готовых статей и разделов.</p>
+                </div>
+                <form id="route-form" class="route-form">
+                    <div class="route-question-grid">
+                        <fieldset class="route-question">
+                            <legend>Что хочется разобрать?</legend>
+                            <div class="route-options">
+                                <label class="route-option"><input type="radio" name="topic" value="java" checked><span>Java</span></label>
+                                <label class="route-option"><input type="radio" name="topic" value="csharp"><span>C# / .NET</span></label>
+                                <label class="route-option"><input type="radio" name="topic" value="cpp"><span>C / C++</span></label>
+                                <label class="route-option"><input type="radio" name="topic" value="asm"><span>Ассемблер</span></label>
+                                <label class="route-option"><input type="radio" name="topic" value="python"><span>Python</span></label>
+                                <label class="route-option"><input type="radio" name="topic" value="tools"><span>Инструменты</span></label>
+                                <label class="route-option"><input type="radio" name="topic" value="deobfuscation"><span>Деобфускация</span></label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="route-question">
+                            <legend>Какой у тебя опыт?</legend>
+                            <div class="route-options route-options-level">
+                                <label class="route-option"><input type="radio" name="experience" value="first" checked><span>Только начинаю</span></label>
+                                <label class="route-option"><input type="radio" name="experience" value="basics"><span>Знаю основы</span></label>
+                                <label class="route-option"><input type="radio" name="experience" value="reverse"><span>Уже разбирал код</span></label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="submit" class="route-submit">
+                        <span>Подобрать маршрут</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+                    </button>
+                    <p class="route-privacy">Ответы используются только для рекомендации на этой странице и никуда не отправляются.</p>
+                </form>
+                <div id="route-result" class="route-result" role="status" aria-live="polite" hidden></div>
+            </section>
+
             <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl space-y-4 shadow-sm">
                 <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
                     <div class="relative w-full md:w-96">
@@ -1697,12 +2428,12 @@
                     </div>
 
                     <div class="flex flex-wrap gap-2 w-full md:w-auto" id="tag-filters">
-                        <button onclick="setArticleTag('ALL')" class="hover-scale tag-btn active-tag text-xs px-3.5 py-2 rounded-xl border border-[#00d0ff] bg-[#00d0ff] text-slate-900 uppercase">Все языки</button>
-                        <button onclick="setArticleTag('Java')" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">Java</button>
-                        <button onclick="setArticleTag('C/C++')" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">C/C++</button>
-                        <button onclick="setArticleTag('Assembler')" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">Assembler</button>
-                        <button onclick="setArticleTag('C#')" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">C# (.NET)</button>
-                        <button onclick="setArticleTag('Python')" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">Python</button>
+                        <button onclick="setArticleTag('ALL', this)" class="hover-scale tag-btn active-tag text-xs px-3.5 py-2 rounded-xl border border-[#00d0ff] bg-[#00d0ff] text-slate-900 uppercase">Все языки</button>
+                        <button onclick="setArticleTag('Java', this)" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">Java</button>
+                        <button onclick="setArticleTag('C/C++', this)" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">C/C++</button>
+                        <button onclick="setArticleTag('Assembler', this)" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">Assembler</button>
+                        <button onclick="setArticleTag('C#', this)" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">C# (.NET)</button>
+                        <button onclick="setArticleTag('Python', this)" class="hover-scale tag-btn text-xs px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:border-[#00d0ff] uppercase">Python</button>
                     </div>
                 </div>
             </div>
@@ -1945,7 +2676,9 @@ ADD RAX, 5</textarea>
                     <div id="video-track" class="video-track">
                     <article class="video-card is-active" data-video-index="0" data-video-id="pl3i2nECogU">
                         <div class="video-frame">
-                            <iframe data-src="https://www.youtube.com/embed/pl3i2nECogU?rel=0" title="Видео 1 из подборки REVERSE//CORE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin" allowfullscreen></iframe>
+                            <img class="video-poster" src="https://i.ytimg.com/vi/pl3i2nECogU/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+                            <button class="video-play-button" type="button" data-play-video aria-label="Загрузить видео 1 из подборки REVERSE//CORE"><span class="video-play-icon" aria-hidden="true">▶</span><span data-play-label>Смотреть видео</span></button>
+                            <div class="video-loading" role="status" aria-live="polite" hidden><span class="video-spinner" aria-hidden="true"></span><span>Видео грузится...</span></div>
                         </div>
                         <div class="video-card-meta">
                             <span class="video-card-label">ВИДЕО 01</span>
@@ -1954,7 +2687,9 @@ ADD RAX, 5</textarea>
                     </article>
                     <article class="video-card" data-video-index="1" data-video-id="EfAVDb-0iCk">
                         <div class="video-frame">
-                            <iframe data-src="https://www.youtube.com/embed/EfAVDb-0iCk?rel=0" title="Видео 2 из подборки REVERSE//CORE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin" allowfullscreen></iframe>
+                            <img class="video-poster" src="https://i.ytimg.com/vi/EfAVDb-0iCk/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+                            <button class="video-play-button" type="button" data-play-video aria-label="Загрузить видео 2 из подборки REVERSE//CORE"><span class="video-play-icon" aria-hidden="true">▶</span><span data-play-label>Смотреть видео</span></button>
+                            <div class="video-loading" role="status" aria-live="polite" hidden><span class="video-spinner" aria-hidden="true"></span><span>Видео грузится...</span></div>
                         </div>
                         <div class="video-card-meta">
                             <span class="video-card-label">ВИДЕО 02</span>
@@ -1963,7 +2698,9 @@ ADD RAX, 5</textarea>
                     </article>
                     <article class="video-card" data-video-index="2" data-video-id="8vk5z9VAaBQ">
                         <div class="video-frame">
-                            <iframe data-src="https://www.youtube.com/embed/8vk5z9VAaBQ?rel=0" title="Видео 3 из подборки REVERSE//CORE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin" allowfullscreen></iframe>
+                            <img class="video-poster" src="https://i.ytimg.com/vi/8vk5z9VAaBQ/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+                            <button class="video-play-button" type="button" data-play-video aria-label="Загрузить видео 3 из подборки REVERSE//CORE"><span class="video-play-icon" aria-hidden="true">▶</span><span data-play-label>Смотреть видео</span></button>
+                            <div class="video-loading" role="status" aria-live="polite" hidden><span class="video-spinner" aria-hidden="true"></span><span>Видео грузится...</span></div>
                         </div>
                         <div class="video-card-meta">
                             <span class="video-card-label">ВИДЕО 03</span>
@@ -1972,7 +2709,9 @@ ADD RAX, 5</textarea>
                     </article>
                     <article class="video-card" data-video-index="3" data-video-id="wIe3eDfGKUo">
                         <div class="video-frame">
-                            <iframe data-src="https://www.youtube.com/embed/wIe3eDfGKUo?rel=0" title="Видео 4 из подборки REVERSE//CORE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin" allowfullscreen></iframe>
+                            <img class="video-poster" src="https://i.ytimg.com/vi/wIe3eDfGKUo/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+                            <button class="video-play-button" type="button" data-play-video aria-label="Загрузить видео 4 из подборки REVERSE//CORE"><span class="video-play-icon" aria-hidden="true">▶</span><span data-play-label>Смотреть видео</span></button>
+                            <div class="video-loading" role="status" aria-live="polite" hidden><span class="video-spinner" aria-hidden="true"></span><span>Видео грузится...</span></div>
                         </div>
                         <div class="video-card-meta">
                             <span class="video-card-label">ВИДЕО 04</span>
@@ -1981,7 +2720,9 @@ ADD RAX, 5</textarea>
                     </article>
                     <article class="video-card" data-video-index="4" data-video-id="pYzePPIhsHY">
                         <div class="video-frame">
-                            <iframe data-src="https://www.youtube.com/embed/pYzePPIhsHY?rel=0" title="Видео 5 из подборки REVERSE//CORE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin" allowfullscreen></iframe>
+                            <img class="video-poster" src="https://i.ytimg.com/vi/pYzePPIhsHY/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+                            <button class="video-play-button" type="button" data-play-video aria-label="Загрузить видео 5 из подборки REVERSE//CORE"><span class="video-play-icon" aria-hidden="true">▶</span><span data-play-label>Смотреть видео</span></button>
+                            <div class="video-loading" role="status" aria-live="polite" hidden><span class="video-spinner" aria-hidden="true"></span><span>Видео грузится...</span></div>
                         </div>
                         <div class="video-card-meta">
                             <span class="video-card-label">ВИДЕО 05</span>
@@ -2002,50 +2743,50 @@ ADD RAX, 5</textarea>
                     &copy; 2026 REVERSE//CORE. Все права защищены.
                 </div>
             </div>
+
+            <div class="details-menu-wrap">
+                <div id="details-menu" class="details-menu" aria-label="Контакты и местоположение" hidden>
+                    <a href="https://t.me/bellizar1488" target="_blank" rel="noopener noreferrer" class="details-menu-link" aria-label="Написать в Telegram: @bellizar1488">
+                        <svg class="details-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m22 2-7 20-4-9-9-4 20-7Zm0 0L11 13"></path>
+                        </svg>
+                        <span class="details-menu-copy">
+                            <span class="details-menu-title">Telegram</span>
+                            <span class="details-menu-caption">@bellizar1488</span>
+                        </span>
+                        <svg class="details-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"></path>
+                        </svg>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=McDonald%27s%2C%20Aksay-2%208A%2C%20Almaty&amp;query_place_id=ChIJh04NvoRpgzgRrmGhgegn-jg" target="_blank" rel="noopener noreferrer" class="details-menu-link" aria-label="Открыть McDonald's в микрорайоне Аксай-2, 8А, на Google Maps">
+                        <svg class="details-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                            <circle cx="12" cy="10" r="2.5" stroke-width="2"></circle>
+                        </svg>
+                        <span class="details-menu-copy">
+                            <span class="details-menu-title">Местоположение</span>
+                            <span class="details-menu-caption">McDonald's · Аксай-2, 8А</span>
+                        </span>
+                        <svg class="details-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"></path>
+                        </svg>
+                    </a>
+                </div>
+                <button id="details-toggle" type="button" onclick="toggleDetailsMenu()" class="utility-action details-toggle uppercase tracking-wider" aria-label="Подробнее" aria-expanded="false" aria-controls="details-menu">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v5m0-8h.01"></path>
+                    </svg>
+                    <span>Подробнее</span>
+                    <svg id="details-chevron" class="w-4 h-4 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </footer>
 
-    <div class="details-menu-wrap">
-        <div id="details-menu" class="details-menu" aria-label="Контакты и местоположение" hidden>
-            <a href="https://t.me/bellizar1488" target="_blank" rel="noopener noreferrer" class="details-menu-link" aria-label="Написать в Telegram: @bellizar1488">
-                <svg class="details-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m22 2-7 20-4-9-9-4 20-7Zm0 0L11 13"></path>
-                </svg>
-                <span class="details-menu-copy">
-                    <span class="details-menu-title">Telegram</span>
-                    <span class="details-menu-caption">@bellizar1488</span>
-                </span>
-                <svg class="details-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"></path>
-                </svg>
-            </a>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=McDonald%27s%2C%20Aksay-2%208A%2C%20Almaty&amp;query_place_id=ChIJh04NvoRpgzgRrmGhgegn-jg" target="_blank" rel="noopener noreferrer" class="details-menu-link" aria-label="Открыть McDonald's в микрорайоне Аксай-2, 8А, на Google Maps">
-                <svg class="details-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
-                    <circle cx="12" cy="10" r="2.5" stroke-width="2"></circle>
-                </svg>
-                <span class="details-menu-copy">
-                    <span class="details-menu-title">Местоположение</span>
-                    <span class="details-menu-caption">McDonald's · Аксай-2, 8А</span>
-                </span>
-                <svg class="details-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"></path>
-                </svg>
-            </a>
-        </div>
-        <button id="details-toggle" type="button" onclick="toggleDetailsMenu()" class="utility-action details-toggle uppercase tracking-wider" aria-label="Подробнее" aria-expanded="false" aria-controls="details-menu">
-            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" stroke-width="2"></circle>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v5m0-8h.01"></path>
-            </svg>
-            <span>Подробнее</span>
-            <svg id="details-chevron" class="w-4 h-4 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"></path>
-            </svg>
-        </button>
-    </div>
-
-    <button id="back-to-top" onclick="scrollToTop()" class="utility-action btn-back-to-top uppercase tracking-wider" title="Вернуть наверх">
+    <button id="back-to-top" onclick="scrollToTop()" class="utility-action btn-back-to-top uppercase tracking-wider" title="Вернуть наверх" aria-label="Вернуть наверх">
         <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path>
         </svg>
@@ -2248,32 +2989,151 @@ ADD RAX, 5</textarea>
         }
 
         let activeTag = "ALL";
+        let themeUpdateTimer = 0;
+        let themeClearTimer = 0;
+        let loaderDotsTimer = 0;
+        let loaderStartTimer = 0;
+        let loaderFinishTimer = 0;
+        let loaderDotCount = 1;
+        let themeLoaderActive = false;
+
+        const siteLoader = document.getElementById("site-loader");
+        const siteLoaderDots = siteLoader?.querySelector("[data-loader-dots]");
+
+        function startSiteLoaderDots() {
+            window.clearInterval(loaderDotsTimer);
+            if (!siteLoaderDots) return;
+            loaderDotCount = 1;
+            siteLoaderDots.textContent = ".";
+            loaderDotsTimer = window.setInterval(() => {
+                loaderDotCount = loaderDotCount % 3 + 1;
+                siteLoaderDots.textContent = ".".repeat(loaderDotCount);
+            }, 300);
+        }
+
+        function showSiteLoader() {
+            if (!siteLoader) return;
+            window.clearTimeout(loaderStartTimer);
+            window.clearTimeout(loaderFinishTimer);
+
+            const entering = siteLoader.hidden || siteLoader.classList.contains("is-leaving");
+            siteLoader.hidden = false;
+            if (entering) {
+                siteLoader.classList.remove("is-visible");
+                siteLoader.classList.add("is-leaving");
+                void siteLoader.offsetWidth;
+            }
+            siteLoader.classList.remove("is-leaving");
+            siteLoader.classList.add("is-visible");
+            startSiteLoaderDots();
+        }
+
+        function hideSiteLoader(delay = 0) {
+            if (!siteLoader) return;
+            window.clearTimeout(loaderStartTimer);
+            window.clearTimeout(loaderFinishTimer);
+            loaderStartTimer = window.setTimeout(() => {
+                siteLoader.classList.remove("is-visible");
+                siteLoader.classList.add("is-leaving");
+                window.clearInterval(loaderDotsTimer);
+                loaderFinishTimer = window.setTimeout(() => {
+                    if (!siteLoader.classList.contains("is-visible")) {
+                        siteLoader.hidden = true;
+                        siteLoader.classList.remove("is-leaving");
+                    }
+                }, 500);
+            }, delay);
+        }
+
+        function finishInitialSiteLoad() {
+            const fontsReady = document.fonts?.ready || Promise.resolve();
+            const fallback = new Promise(resolve => window.setTimeout(resolve, 1800));
+            Promise.race([fontsReady, fallback]).then(() => {
+                if (!themeLoaderActive) hideSiteLoader(650);
+            });
+        }
+
+        startSiteLoaderDots();
+        if (document.readyState === "complete") finishInitialSiteLoad();
+        else window.addEventListener("load", finishInitialSiteLoad, { once: true });
+
+        const routeRecommendations = {
+            java: { title: "Пойми, почему Java-код читается после сборки", description: "Короткий разбор байткода и декомпиляции Java.", type: "article", target: "java-simple", action: "Открыть статью" },
+            csharp: { title: "Разберись с C# и dnSpy", description: "Начни с устройства .NET-кода и посмотри, как его читает декомпилятор.", type: "article", target: "csharp-simple", action: "Открыть статью" },
+            cpp: { title: "Посмотри, что остаётся от C++", description: "Узнай, как машинный код превращается в читаемый псевдокод.", type: "article", target: "cpp-simple", action: "Открыть статью" },
+            asm: { title: "Освой пять команд Ассемблера", description: "Короткие примеры MOV, ADD, CMP, JMP и CALL объяснены простыми словами.", type: "article", target: "asm-simple", action: "Открыть статью" },
+            python: { title: "Начни с Python-файлов", description: "Узнай, как устроена распаковка Python-программ и что такое байткод.", type: "article", target: "python-simple", action: "Открыть статью" },
+            tools: { title: "Выбери инструмент под задачу", description: "Открой каталог декомпиляторов и отладчиков с краткими пояснениями.", type: "tab", target: "tools", action: "Открыть каталог" },
+            deobfuscation: { title: "Попробуй деобфускацию на практике", description: "Перейди к небольшим помощникам для Base64, HEX и XOR.", type: "tab", target: "deobfuscation", action: "Открыть инструменты" }
+        };
+
+        const experienceTips = {
+            first: "Начни с объяснения: устанавливать программы для первого шага не нужно.",
+            basics: "Сопоставь пример с конструкциями кода, которые уже знаешь.",
+            reverse: "После разбора проверь выводы подходящим инструментом или мини-заданием."
+        };
+
+        document.getElementById("route-form")?.addEventListener("submit", event => {
+            event.preventDefault();
+            const answers = new FormData(event.currentTarget);
+            const recommendation = routeRecommendations[answers.get("topic")];
+            const tip = experienceTips[answers.get("experience")];
+            const result = document.getElementById("route-result");
+            if (!recommendation || !tip || !result) return;
+
+            result.innerHTML = `
+                <div class="route-result-copy">
+                    <span class="route-result-kicker">ТВОЙ СЛЕДУЮЩИЙ ШАГ</span>
+                    <h3>${recommendation.title}</h3>
+                    <p>${recommendation.description} ${tip}</p>
+                </div>
+                <button class="route-action" type="button">${recommendation.action}<span aria-hidden="true">→</span></button>
+            `;
+            result.hidden = false;
+            result.querySelector(".route-action")?.addEventListener("click", () => {
+                if (recommendation.type === "article") {
+                    openArticleModal(recommendation.target);
+                    return;
+                }
+                switchTab(recommendation.target);
+                document.getElementById(`tab-${recommendation.target}-content`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
 
         function applyTheme(theme, animate = false) {
             const root = document.documentElement;
             const nextTheme = theme === "dark" ? "dark" : "light";
             const toggle = document.getElementById("theme-toggle");
 
-            if (animate && toggle) {
-                const bounds = toggle.getBoundingClientRect();
-                root.style.setProperty("--theme-x", `${bounds.left + bounds.width / 2}px`);
-                root.style.setProperty("--theme-y", `${bounds.top + bounds.height / 2}px`);
-                root.classList.add("theme-transitioning");
+            const commit = () => {
+                root.dataset.theme = nextTheme;
+                if (toggle) {
+                    const label = nextTheme === "dark" ? "Включить светлую тему" : "Включить тёмную тему";
+                    toggle.setAttribute("aria-label", label);
+                    toggle.setAttribute("title", label);
+                    toggle.setAttribute("aria-pressed", String(nextTheme === "dark"));
+                }
+                try {
+                    localStorage.setItem("reversecore-theme", nextTheme);
+                } catch {}
+            };
+
+            window.clearTimeout(themeUpdateTimer);
+            window.clearTimeout(themeClearTimer);
+            if (!animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                commit();
+                return;
             }
 
-            root.dataset.theme = nextTheme;
-            if (toggle) {
-                const label = nextTheme === "dark" ? "Включить светлую тему" : "Включить тёмную тему";
-                toggle.setAttribute("aria-label", label);
-                toggle.setAttribute("title", label);
-                toggle.setAttribute("aria-pressed", String(nextTheme === "dark"));
-            }
-
-            try {
-                localStorage.setItem("reversecore-theme", nextTheme);
-            } catch {}
-
-            if (animate) window.setTimeout(() => root.classList.remove("theme-transitioning"), 760);
+            themeLoaderActive = true;
+            showSiteLoader();
+            themeUpdateTimer = window.setTimeout(() => {
+                commit();
+            }, 280);
+            themeClearTimer = window.setTimeout(() => {
+                themeLoaderActive = false;
+                hideSiteLoader();
+            }, 700);
         }
 
         const themeToggle = document.getElementById("theme-toggle");
@@ -2334,14 +3194,14 @@ ADD RAX, 5</textarea>
             grid.querySelectorAll('[data-rating-widget]').forEach(updateRatingWidget);
         }
 
-        function setArticleTag(tag) {
+        function setArticleTag(tag, selectedButton) {
             activeTag = tag;
             document.querySelectorAll('.tag-btn').forEach(btn => {
                 btn.classList.remove('border-[#00d0ff]', 'bg-[#00d0ff]', 'text-slate-900');
                 btn.classList.add('border-slate-300', 'bg-white', 'text-slate-700');
             });
-            event.target.classList.remove('border-slate-300', 'bg-white', 'text-slate-700');
-            event.target.classList.add('border-[#00d0ff]', 'bg-[#00d0ff]', 'text-slate-900');
+            selectedButton?.classList.remove('border-slate-300', 'bg-white', 'text-slate-700');
+            selectedButton?.classList.add('border-[#00d0ff]', 'bg-[#00d0ff]', 'text-slate-900');
             renderArticles();
         }
 
@@ -2486,11 +3346,46 @@ ADD RAX, 5</textarea>
             let scrollFrame = 0;
 
             function loadVideo(card) {
-                const frame = card.querySelector('iframe');
-                if (frame?.dataset.src) {
-                    frame.src = frame.dataset.src;
-                    delete frame.dataset.src;
-                }
+                const frame = card.querySelector('.video-frame');
+                const playButton = frame?.querySelector('[data-play-video]');
+                const status = frame?.querySelector('.video-loading');
+                const videoId = card.dataset.videoId;
+                if (!frame || !playButton || !status || !videoId || ['loading', 'loaded'].includes(frame.dataset.state)) return;
+
+                const videoNumber = Number(card.dataset.videoIndex) + 1;
+                const label = playButton.querySelector('[data-play-label]');
+                const iframe = document.createElement('iframe');
+                frame.dataset.state = 'loading';
+                playButton.hidden = true;
+                status.hidden = false;
+                if (label) label.textContent = 'Смотреть видео';
+                status.querySelector('span:last-child').textContent = 'Видео грузится...';
+                iframe.title = `Видео ${videoNumber} из подборки REVERSE//CORE`;
+                iframe.loading = 'eager';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                iframe.referrerPolicy = 'origin';
+                iframe.allowFullscreen = true;
+
+                const showRetry = () => {
+                    if (frame.dataset.state !== 'loading') return;
+                    window.clearTimeout(loadTimer);
+                    frame.dataset.state = 'error';
+                    iframe.remove();
+                    status.hidden = true;
+                    playButton.hidden = false;
+                    if (label) label.textContent = 'Повторить загрузку';
+                    playButton.setAttribute('aria-label', `Повторить загрузку видео ${videoNumber}`);
+                };
+
+                iframe.addEventListener('load', () => {
+                    window.clearTimeout(loadTimer);
+                    frame.dataset.state = 'loaded';
+                    status.hidden = true;
+                }, { once: true });
+                iframe.addEventListener('error', showRetry, { once: true });
+                const loadTimer = window.setTimeout(showRetry, 15000);
+                iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0&autoplay=1`;
+                frame.appendChild(iframe);
             }
 
             function renderActiveVideo(index) {
@@ -2522,9 +3417,12 @@ ADD RAX, 5</textarea>
 
                 if (largestVisibleRatio > 0) {
                     renderActiveVideo(closestIndex);
-                    loadVideo(cards[closestIndex]);
                 }
             }
+
+            cards.forEach(card => {
+                card.querySelector('[data-play-video]')?.addEventListener('click', () => loadVideo(card));
+            });
 
             viewport.addEventListener('scroll', () => {
                 if (!scrollFrame) scrollFrame = requestAnimationFrame(syncActiveVideo);
@@ -2543,19 +3441,6 @@ ADD RAX, 5</textarea>
             });
 
             renderActiveVideo(0);
-
-            if ('IntersectionObserver' in window) {
-                const videoObserver = new IntersectionObserver(entries => {
-                    entries.forEach(entry => {
-                        if (!entry.isIntersecting) return;
-                        loadVideo(entry.target);
-                        videoObserver.unobserve(entry.target);
-                    });
-                }, { root: viewport, rootMargin: '180px 0px', threshold: 0.01 });
-                cards.forEach(card => videoObserver.observe(card));
-            } else {
-                loadVideo(cards[0]);
-            }
         }
 
         function setDetailsMenuOpen(isOpen) {
@@ -2566,7 +3451,11 @@ ADD RAX, 5</textarea>
             menu.hidden = !isOpen;
             toggle.setAttribute('aria-expanded', String(isOpen));
             document.getElementById('details-chevron')?.classList.toggle('rotate-180', isOpen);
-            if (isOpen) menu.querySelector('a')?.focus();
+            if (isOpen) {
+                menu.querySelector('a')?.focus();
+                toggle.scrollIntoView({ block: 'end', behavior: 'auto' });
+                window.scrollBy({ top: 16, behavior: 'auto' });
+            }
         }
 
         function toggleDetailsMenu() {
@@ -2713,11 +3602,13 @@ ADD RAX, 5</textarea>
         }
 
         function setAmbientButtonState(isPlaying) {
-            const action = isPlaying ? 'Выключить киберпанк-эмбиент' : 'Включить киберпанк-эмбиент';
+            const action = isPlaying ? 'Выключить фоновую атмосферу' : 'Включить фоновую атмосферу';
             ambientButton.classList.toggle('is-playing', isPlaying);
             ambientButton.setAttribute('aria-pressed', String(isPlaying));
             ambientButton.setAttribute('aria-label', action);
             ambientButton.setAttribute('title', action);
+            const label = ambientButton.querySelector('[data-ambient-label]');
+            if (label) label.textContent = isPlaying ? 'Атмосфера: вкл.' : 'Атмосфера: выкл.';
         }
 
         function stopAmbientLayer(layer) {
