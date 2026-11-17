@@ -2259,6 +2259,40 @@
             font-family: "Montserrat", sans-serif !important;
             font-weight: 700 !important;
         }
+
+        .snow-toggle {
+            color: #0284a8;
+            width: 46px;
+            min-width: 46px;
+            height: 46px;
+            padding: 0;
+        }
+        @media (max-width: 640px) {
+            .snow-toggle { width: 42px; min-width: 42px; height: 42px; }
+        }
+        @media (max-width: 360px) {
+            .glass-header .header-logo-mark { display: none; }
+            .header-brand-name { font-size: 14px !important; }
+        }
+        .snow-toggle svg {
+            position: relative;
+            z-index: 1;
+            width: 21px;
+            height: 21px;
+        }
+        .snow-toggle[aria-pressed="true"] {
+            border-color: #00d0ff;
+            box-shadow: 0 0 20px rgba(0, 208, 255, 0.25), 0 8px 22px rgba(15, 23, 42, 0.07);
+        }
+        html[data-theme="dark"] .snow-toggle { color: #79e7ff; }
+        #snow-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 45;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
     </style>
     <script>
         (() => {
@@ -2326,6 +2360,11 @@
                 </div>
 
                 <div class="header-controls flex items-center gap-2 shrink-0">
+                    <button id="snow-toggle" type="button" class="ambient-toggle snow-toggle" aria-label="Включить снег" aria-pressed="false" title="Включить снег">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 2v20M4 6.5l16 11M4 17.5l16-11M9 4.5 12 7l3-2.5M9 19.5 12 17l3 2.5M4.5 10l3.7-1-.6-3.7M19.5 14l-3.7 1 .6 3.7M4.5 14l3.7 1-.6 3.7M19.5 10l-3.7-1 .6-3.7"/>
+                        </svg>
+                    </button>
                     <button id="ambient-toggle" type="button" class="ambient-toggle" aria-label="Включить фоновую атмосферу" aria-pressed="false" title="Включить фоновую атмосферу">
                         <svg class="ambient-wave" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12h3l2.1-5 3.8 10 3.1-7 1.5 2H21"></path>
@@ -3722,6 +3761,164 @@ ADD RAX, 5</textarea>
         renderArticles();
         renderTools();
         initVideoScroll();
+    </script>
+    <script>
+        (() => {
+            const button = document.getElementById('snow-toggle');
+            const canvas = document.createElement('canvas');
+            canvas.id = 'snow-canvas';
+            canvas.setAttribute('aria-hidden', 'true');
+            const ctx = canvas.getContext('2d');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            let enabled = false, frame = 0, last = 0, elapsed = 0, plow = null;
+            let width = 0, height = 0, flakes = [], banks = [];
+            const bankCount = 60;
+
+            function makeFlake(initial = false) {
+                const depth = Math.random();
+                return { x: Math.random() * width, y: initial ? Math.random() * height : -8,
+                    radius: 0.7 + depth * 2, speed: 17 + depth * 33,
+                    drift: Math.random() * 10 + 4, phase: Math.random() * Math.PI * 2,
+                    alpha: 0.28 + depth * 0.42 };
+            }
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+                canvas.width = Math.round(width * ratio);
+                canvas.height = Math.round(height * ratio);
+                ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+                flakes = Array.from({ length: Math.min(108, Math.max(34, Math.round(width * height / 12500))) }, () => makeFlake(true));
+                if (!banks.length) banks = Array(bankCount).fill(0);
+            }
+
+            function drawBank() {
+                const step = width / (bankCount - 1);
+                ctx.beginPath();
+                ctx.moveTo(0, height);
+                ctx.lineTo(0, height - banks[0]);
+                for (let i = 1; i < bankCount; i++) {
+                    const x = i * step;
+                    const y = height - banks[i];
+                    const previousY = height - banks[i - 1];
+                    ctx.quadraticCurveTo(x - step / 2, previousY, x, y);
+                }
+                ctx.lineTo(width, height);
+                ctx.closePath();
+                const gradient = ctx.createLinearGradient(0, height - 25, 0, height);
+                gradient.addColorStop(0, 'rgba(255,255,255,.95)');
+                gradient.addColorStop(1, 'rgba(189,224,237,.92)');
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(128,185,207,.48)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            function drawPlow(x) {
+                const y = height - 5;
+                ctx.save();
+                ctx.translate(x, y);
+                // A compact snowplow, drawn on the same non-interactive canvas.
+                ctx.fillStyle = '#263e50';
+                ctx.fillRect(-27, -17, 43, 10);
+                ctx.fillStyle = '#f2b544';
+                ctx.beginPath();
+                ctx.roundRect(-25, -25, 32, 15, 4);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.moveTo(-17, -25); ctx.lineTo(-12, -36); ctx.lineTo(2, -36); ctx.lineTo(7, -25); ctx.closePath();
+                ctx.fill();
+                ctx.fillStyle = '#ccecf4';
+                ctx.fillRect(-10, -33, 10, 7);
+                ctx.fillStyle = '#f7e3a3';
+                ctx.fillRect(-7, -39, 5, 3);
+                ctx.fillStyle = '#1e3442';
+                for (const wheel of [-17, 6]) {
+                    ctx.beginPath(); ctx.arc(wheel, -7, 6, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = '#91a5af'; ctx.beginPath(); ctx.arc(wheel, -7, 2.5, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = '#1e3442';
+                }
+                ctx.fillStyle = '#e58b37';
+                ctx.beginPath(); ctx.moveTo(16, -17); ctx.lineTo(25, -14); ctx.lineTo(28, -4); ctx.lineTo(18, -4); ctx.closePath(); ctx.fill();
+                ctx.restore();
+            }
+
+            function render(time) {
+                if (!enabled || document.hidden) return;
+                const dt = last ? Math.min((time - last) / 1000, 0.05) : 0;
+                last = time;
+                elapsed += dt;
+                ctx.clearRect(0, 0, width, height);
+                const dark = document.documentElement.dataset.theme === 'dark';
+                for (const flake of flakes) {
+                    flake.y += flake.speed * dt;
+                    flake.x += Math.sin(time / 1600 + flake.phase) * flake.drift * dt;
+                    if (flake.y > height || flake.x < -10 || flake.x > width + 10) Object.assign(flake, makeFlake());
+                    ctx.beginPath();
+                    ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = dark ? `rgba(233,248,255,${flake.alpha})` : `rgba(129,185,207,${flake.alpha * 0.75})`;
+                    ctx.fill();
+                }
+                for (let i = 0; i < bankCount; i++) {
+                    const target = 13 + 4 * Math.sin(i * 0.17) + 2 * Math.sin(i * 0.43);
+                    banks[i] = Math.min(target, banks[i] + dt * 0.7);
+                }
+                if (elapsed >= 22 && plow === null) { plow = -40; elapsed = 0; }
+                if (plow !== null) {
+                    plow += dt * 95;
+                    const cleared = Math.floor((plow + 25) / width * (bankCount - 1));
+                    for (let i = Math.max(0, cleared - 3); i <= Math.min(bankCount - 1, cleared); i++) banks[i] = Math.max(1, banks[i] - dt * 30);
+                }
+                drawBank();
+                if (plow !== null) {
+                    drawPlow(plow);
+                    if (plow > width + 45) plow = null;
+                }
+                frame = requestAnimationFrame(render);
+            }
+
+            function start() {
+                document.body.appendChild(canvas);
+                resize();
+                last = 0;
+                if (reducedMotion.matches) {
+                    banks = Array.from({ length: bankCount }, (_, i) => 4 + Math.sin(i * 0.2));
+                    drawBank();
+                } else if (!document.hidden) frame = requestAnimationFrame(render);
+            }
+
+            function stop() {
+                cancelAnimationFrame(frame);
+                canvas.remove();
+                flakes = []; banks = []; plow = null; elapsed = 0; last = 0;
+            }
+
+            button.addEventListener('click', () => {
+                enabled = !enabled;
+                button.setAttribute('aria-pressed', String(enabled));
+                button.setAttribute('aria-label', enabled ? 'Выключить снег' : 'Включить снег');
+                button.title = enabled ? 'Выключить снег' : 'Включить снег';
+                if (enabled) start(); else stop();
+            });
+            window.addEventListener('resize', () => {
+                if (!enabled) return;
+                resize();
+                if (reducedMotion.matches) drawBank();
+            });
+            document.addEventListener('visibilitychange', () => {
+                if (!enabled || reducedMotion.matches) return;
+                cancelAnimationFrame(frame);
+                last = 0;
+                if (!document.hidden) frame = requestAnimationFrame(render);
+            });
+            reducedMotion.addEventListener('change', () => {
+                if (!enabled) return;
+                stop();
+                start();
+            });
+        })();
     </script>
 </body>
 </html>
